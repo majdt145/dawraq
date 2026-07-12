@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-he="{{TITLE}}" data-ar="{{TITLE_AR}}">{{TITLE}}</title>
+<meta name="description" content="{{DESC}}" data-desc-he="{{DESC}}" data-desc-ar="{{DESC_AR}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="דורק — DAWRAQ">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESC}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="{{SITE_URL}}/assets/icons/icon-512.png">
+<meta property="og:locale" content="he_IL">
+<meta property="og:locale:alternate" content="ar_IL">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="assets/icons/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+{{JSONLD}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>(function(){try{if(window.matchMedia&&!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.className+=' anim';}}catch(e){}})();</script>
+<!-- a11y prefs: apply saved accessibility classes BEFORE first paint (no flash) -->
+<script>(function(){try{var s=JSON.parse(localStorage.getItem('dq-a11y')||'{}'),h=document.documentElement,c=[];if(s.fs===1)c.push('aw-fs1');if(s.fs===2)c.push('aw-fs2');if(s.dark)c.push('aw-dark');if(s.gray)c.push('aw-gray');if(s.links)c.push('aw-links');if(s.spacing)c.push('aw-spacing');if(s.stopmotion){c.push('aw-stopmotion');h.className=h.className.replace(/(^|\s)anim(\s|$)/,' ');}if(c.length)h.className+=' '+c.join(' ');}catch(e){}})();</script>
+</head>
+<body>
+<!-- everything the a11y contrast/grayscale filters may touch lives inside
+     .aw-page; the fixed widget + cookie banner + WhatsApp float stay OUTSIDE
+     so a filter never becomes their containing block. -->
+<div class="aw-page">
+<a class="skip" href="#main" data-he="דלג לתוכן" data-ar="تخطَّ إلى المحتوى">דלג לתוכן</a>
+
+<!-- header -->
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html" aria-label="דורק — דף הבית" data-aria-he="דורק — דף הבית" data-aria-ar="دورق — الصفحة الرئيسية"><img src="assets/logo.webp" alt="DAWRAQ דורק" width="1200" height="464"></a>
+  <nav class="main" aria-label="ראשי"><ul id="mainmenu">
+    <li><a href="index.html" data-nav="home" data-he="בית" data-ar="الرئيسية">בית</a></li>
+    <li><a href="journeys.html" data-nav="journeys" data-he="המסעות" data-ar="الرحلات">המסעות</a></li>
+    <li><a href="schools.html" data-nav="schools" data-he="לבתי ספר · גפ״ן" data-ar="للمدارس · چيفن">לבתי ספר · גפ״ן</a></li>
+    <li><a href="contact.html" data-nav="contact" data-he="צור קשר" data-ar="اتصلوا بنا">צור קשר</a></li>
+  </ul></nav>
+  <div class="head-cta">
+    <div class="lang" role="group" aria-label="שפה / لغة">
+      <button class="on" data-lang="he" data-i18n-exempt aria-pressed="true" onclick="setLang('he')">עברית</button>
+      <button data-lang="ar" data-i18n-exempt aria-pressed="false" onclick="setLang('ar')">عربي</button>
+    </div>
+    <a href="contact.html" class="btn btn-gold" data-he="הצעת מחיר" data-ar="عرض سعر">הצעת מחיר</a>
+    <button class="hamb" aria-label="תפריט" data-aria-he="תפריט" data-aria-ar="القائمة" aria-expanded="false" aria-controls="mainmenu">☰</button>
+  </div>
+</div></header>
+
+<main id="main" tabindex="-1">
+{{CONTENT}}
+</main>
+
+<!-- footer -->
+<footer class="site"><div class="wrap">
+  <div class="top">
+    <div class="f-brand">
+      <img src="assets/logo-white.webp" alt="DAWRAQ דורק" width="1200" height="464">
+      <p data-he="מסעות מדע חווייתיים לבית הספר היסודי — תוכנית גפ״ן 43964." data-ar="رحلات علمية تجريبية للمدرسة الابتدائية — برنامج چيفن 43964.">מסעות מדע חווייתיים לבית הספר היסודי — תוכנית גפ״ן 43964.</p>
+    </div>
+    <div><h4 data-he="ניווט" data-ar="تصفّح">ניווט</h4>
+      <a href="journeys.html" data-he="המסעות" data-ar="الرحلات">המסעות</a>
+      <a href="schools.html" data-he="לבתי ספר · גפ״ן" data-ar="للمدارس · چيفن">לבתי ספר · גפ״ן</a>
+      <a href="contact.html" data-he="צור קשר" data-ar="اتصلوا بنا">צור קשר</a></div>
+    <div><h4 data-he="צור קשר" data-ar="اتصلوا بنا">צור קשר</h4>
+      <div class="row"><svg viewBox="0 0 24 24" aria-hidden="true" class="f-ic"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <a href="tel:0527758483" dir="ltr">052-775-8483</a></div>
+      <div class="row"><svg viewBox="0 0 24 24" aria-hidden="true" class="f-ic"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg> <a href="mailto:Dawraqfactory@gmail.com" dir="ltr">Dawraqfactory@gmail.com</a></div></div>
+  </div>
+  <div class="legal">
+    <span data-he="© 2026 דורק — DAWRAQ · סימן מסחר רשום מס׳ 378828 · כל הזכויות שמורות" data-ar="© 2026 دورق — DAWRAQ · علامة تجارية مسجلة رقم 378828 · جميع الحقوق محفوظة">© 2026 דורק — DAWRAQ · סימן מסחר רשום מס׳ 378828 · כל הזכויות שמורות</span>
+    <span><a href="privacy.html" data-he="מדיניות פרטיות" data-ar="سياسة الخصوصية">מדיניות פרטיות</a> · <a href="accessibility.html" data-he="הצהרת נגישות" data-ar="إعلان إتاحة الوصول">הצהרת נגישות</a></span>
+  </div>
+</div></footer>
+</div><!-- /aw-page -->
+
+<!-- ===================== Accessibility widget ===================== -->
+<button class="aw-btn" id="aw-btn" type="button" aria-expanded="false" aria-controls="aw-panel"
+        aria-label="תפריט נגישות" data-aria-he="תפריט נגישות" data-aria-ar="قائمة إتاحة الوصول">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+    <circle cx="12" cy="3.6" r="2.1"/>
+    <path d="M20 6.5c0 .7-.5 1.2-1.2 1.3L15 8.3v3.1l1.9 6.6c.2.8-.2 1.5-1 1.7-.8.2-1.5-.2-1.7-1l-1.6-5.6h-1.2l-1.6 5.6c-.2.8-.9 1.2-1.7 1-.8-.2-1.2-.9-1-1.7L9 11.4V8.3l-3.8-.5C4.5 7.7 4 7.2 4 6.5c0-.8.7-1.4 1.5-1.3L12 6l6.5-.8C19.3 5.1 20 5.7 20 6.5z"/>
+  </svg>
+</button>
+<div class="aw-panel" id="aw-panel" role="dialog" aria-modal="false" aria-labelledby="aw-title" hidden>
+  <div class="aw-head">
+    <h2 class="aw-title" id="aw-title" tabindex="-1">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="12" cy="3.6" r="2.1"/><path d="M20 6.5c0 .7-.5 1.2-1.2 1.3L15 8.3v3.1l1.9 6.6c.2.8-.2 1.5-1 1.7-.8.2-1.5-.2-1.7-1l-1.6-5.6h-1.2l-1.6 5.6c-.2.8-.9 1.2-1.7 1-.8-.2-1.2-.9-1-1.7L9 11.4V8.3l-3.8-.5C4.5 7.7 4 7.2 4 6.5c0-.8.7-1.4 1.5-1.3L12 6l6.5-.8C19.3 5.1 20 5.7 20 6.5z"/></svg>
+      <span data-he="נגישות" data-ar="إتاحة الوصول">נגישות</span>
+    </h2>
+    <button class="aw-x" id="aw-close" type="button" aria-label="סגירה" data-aria-he="סגירה" data-aria-ar="إغلاق">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="aw-row">
+    <span class="aw-label" data-he="גודל טקסט" data-ar="حجم النص">גודל טקסט</span>
+    <div class="aw-step">
+      <button type="button" id="aw-fs-dn" aria-label="הקטנת טקסט" data-aria-he="הקטנת טקסט" data-aria-ar="تصغير النص">−</button>
+      <span class="aw-val" id="aw-fs-val" aria-live="polite">100%</span>
+      <button type="button" id="aw-fs-up" aria-label="הגדלת טקסט" data-aria-he="הגדלת טקסט" data-aria-ar="تكبير النص">+</button>
+    </div>
+  </div>
+  <div class="aw-row">
+    <span class="aw-label" id="aw-l-dark" data-he="ניגודיות כהה" data-ar="تباين داكن">ניגודיות כהה</span>
+    <button type="button" class="aw-switch" data-set="dark" role="switch" aria-checked="false" aria-labelledby="aw-l-dark">
+      <span class="aw-knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>
+    </button>
+  </div>
+  <div class="aw-row">
+    <span class="aw-label" id="aw-l-gray" data-he="גווני אפור" data-ar="درجات الرمادي">גווני אפור</span>
+    <button type="button" class="aw-switch" data-set="gray" role="switch" aria-checked="false" aria-labelledby="aw-l-gray">
+      <span class="aw-knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>
+    </button>
+  </div>
+  <div class="aw-row">
+    <span class="aw-label" id="aw-l-links" data-he="הדגשת קישורים" data-ar="إبراز الروابط">הדגשת קישורים</span>
+    <button type="button" class="aw-switch" data-set="links" role="switch" aria-checked="false" aria-labelledby="aw-l-links">
+      <span class="aw-knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>
+    </button>
+  </div>
+  <div class="aw-row">
+    <span class="aw-label" id="aw-l-spacing" data-he="מרווח טקסט" data-ar="تباعد النص">מרווח טקסט</span>
+    <button type="button" class="aw-switch" data-set="spacing" role="switch" aria-checked="false" aria-labelledby="aw-l-spacing">
+      <span class="aw-knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>
+    </button>
+  </div>
+  <div class="aw-row">
+    <span class="aw-label" id="aw-l-motion" data-he="עצירת אנימציות" data-ar="إيقاف الحركات">עצירת אנימציות</span>
+    <button type="button" class="aw-switch" data-set="stopmotion" role="switch" aria-checked="false" aria-labelledby="aw-l-motion">
+      <span class="aw-knob"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span>
+    </button>
+  </div>
+  <button class="aw-reset" id="aw-reset" type="button" data-he="איפוס הגדרות" data-ar="إعادة التعيين">איפוס הגדרות</button>
+  <div class="aw-foot">
+    <a href="accessibility.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      <span data-he="הצהרת נגישות" data-ar="إعلان إتاحة الوصول">הצהרת נגישות</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===================== Cookie consent banner (hidden until JS shows it) ===================== -->
+<div class="ck-banner" id="ck-banner" role="region" aria-label="הודעת עוגיות" data-aria-he="הודעת עוגיות" data-aria-ar="إشعار ملفات تعريف الارتباط" hidden>
+  <p class="ck-text">
+    <span data-he="האתר משתמש באחסון מקומי חיוני בלבד — לשמירת העדפות כמו שפה והגדרות נגישות. ללא עוגיות פרסום או מעקב." data-ar="يستخدم الموقع التخزين المحلي الضروري فقط — لحفظ تفضيلات مثل اللغة وإعدادات الإتاحة. دون ملفات إعلان أو تتبّع.">האתר משתמש באחסון מקומי חיוני בלבד — לשמירת העדפות כמו שפה והגדרות נגישות. ללא עוגיות פרסום או מעקב.</span>
+    <a href="privacy.html" data-he="מדיניות פרטיות" data-ar="سياسة الخصوصية">מדיניות פרטיות</a>
+  </p>
+  <div class="ck-actions">
+    <button class="ck-accept" id="ck-accept" type="button" data-he="הבנתי, תודה" data-ar="فهمت، شكرًا">הבנתי, תודה</button>
+  </div>
+</div>
+
+<!-- floating WhatsApp — sibling OUTSIDE .aw-page so position:fixed survives the a11y filters -->
+<a class="rv-wa" href="https://wa.me/972527758483" aria-label="וואטסאפ" data-aria-he="וואטסאפ" data-aria-ar="واتساب">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script src="app.js"></script>
+</body>
+</html>
