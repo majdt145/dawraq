@@ -146,28 +146,8 @@
         });
       }
 
-      /* count-up stats (skip year-like numbers) */
-      var counted = false;
-      function countUp() {
-        var meta = document.querySelector(".hero-meta");
-        if (counted || !meta) return;
-        if (meta.getBoundingClientRect().top > (window.innerHeight || 800)) return;
-        counted = true;
-        [].slice.call(meta.querySelectorAll("b")).forEach(function (b) {
-          var m = b.textContent.trim().match(/(\+?)(\d+)/); if (!m) return;
-          var pre = m[1], target = parseInt(m[2], 10); if (target >= 1900) return;
-          var t0 = null, dur = 1100; b.textContent = pre + "0";
-          (function step(t) {
-            if (!t0) t0 = t;
-            var p = Math.min(1, (t - t0) / dur);
-            b.textContent = pre + Math.round(target * (1 - Math.pow(1 - p, 3)));
-            if (p < 1) requestAnimationFrame(step); else b.textContent = pre + target;
-          })(performance.now ? performance.now() : Date.now());
-        });
-      }
-
       var ticking = false;
-      function frame() { reveal(); countUp(); ticking = false; }
+      function frame() { reveal(); ticking = false; }
       function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
       window.addEventListener("scroll", onScroll, { passive: true });
       window.addEventListener("resize", onScroll, { passive: true });

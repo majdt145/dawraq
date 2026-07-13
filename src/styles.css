@@ -148,10 +148,23 @@ html.anim .stars i{animation:twinkle 5s ease-in-out infinite alternate}
   background:rgba(245,194,27,.22);border-radius:6px;z-index:-1}
 .hero .lead{font-size:clamp(16.5px,1.6vw,19px);color:var(--muted-l);line-height:1.75;margin-bottom:26px}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.hero-meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:36px;padding-top:24px;
-  border-top:1px solid var(--line-l)}
-.hero-meta b{display:block;font-size:27px;font-weight:900;color:var(--gold);letter-spacing:.01em}
-.hero-meta span{font-size:14px;color:var(--muted-l)}
+
+/* hero stats = floating glass bubbles (lab-native; replaces the flat stat row) */
+.stat-bubs{display:flex;align-items:center;gap:22px;margin-top:34px}
+.sbub{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  border-radius:50%;flex:none;
+  background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.16),rgba(255,255,255,.04) 60%);
+  border:1.5px solid rgba(255,255,255,.3);
+  box-shadow:inset 0 0 18px rgba(46,155,232,.15),0 8px 22px rgba(0,0,0,.25)}
+.sbub b{font-size:24px;font-weight:900;color:var(--gold);line-height:1.1}
+.sbub span{font-size:11.5px;color:var(--muted-l);max-width:9ch;line-height:1.3}
+.sbub:nth-child(1){width:112px;height:112px}
+.sbub:nth-child(2){width:96px;height:96px;translate:0 14px}
+.sbub:nth-child(3){width:104px;height:104px;translate:0 -8px}
+html.anim .sbub{animation:bubDrift 7s ease-in-out infinite alternate}
+html.anim .sbub:nth-child(2){animation-duration:9s;animation-delay:-3s}
+html.anim .sbub:nth-child(3){animation-duration:11s;animation-delay:-5s}
+@keyframes bubDrift{from{transform:translateY(0)}to{transform:translateY(-9px)}}
 
 /* ---- the ORBIT MAP: 20 journeys around the flask sun (signature) ---- */
 .orbit{position:relative;width:min(520px,92%);aspect-ratio:1;margin-inline:auto}
@@ -180,66 +193,110 @@ html.anim .o-sun{animation:sunPulse 5s ease-in-out infinite alternate}
 .o-legend .chip svg{stroke:var(--gold)}
 .o-cap{text-align:center;color:var(--muted-l);font-size:14px;margin-top:12px}
 
-/* ============================ chips ============================ */
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+/* ============================ chips — dark pills / light-zone jar stickers ============================ */
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
 .chip{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1.5px solid var(--line);
   border-radius:40px;padding:8px 16px;font-weight:700;font-size:14px;color:var(--ink)}
 .chip svg{width:16px;height:16px;stroke:var(--blue-d);fill:none;stroke-width:2;
   stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* inside light zones a chip becomes a specimen-jar sticker: squared label,
+   navy edge, gold tape strip on top, slight per-item tilt */
+.zone-light .chip{position:relative;border-radius:7px;border:1.6px solid var(--ink);
+  background:var(--paper);padding:9px 16px 8px;box-shadow:3px 3px 0 rgba(20,34,79,.10)}
+.zone-light .chip::before{content:"";position:absolute;top:-7px;inset-inline-start:calc(50% - 17px);
+  width:34px;height:10px;border-radius:2px;background:rgba(245,194,27,.75)}
+.zone-light .chip:nth-child(odd){rotate:-1.2deg}
+.zone-light .chip:nth-child(even){rotate:1.1deg}
 
-/* ============================ beats — journey → kit → cabinet (light zone) ============================ */
-.beats{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;
-  max-width:980px;margin-inline:auto}
-.beats::before{content:"";position:absolute;top:56px;inset-inline:11%;height:0;z-index:0;
-  border-top:3px dashed var(--line)}
-.beat{position:relative;z-index:1;text-align:center;padding:0 10px}
-.beat-ic{width:112px;height:112px;margin:0 auto 18px;border-radius:50%;position:relative;
-  background:var(--sky);border:3px solid var(--paper);
-  box-shadow:0 0 0 2.5px var(--blue),0 12px 26px rgba(11,22,56,.12);
-  display:flex;align-items:center;justify-content:center}
-.beat:nth-child(2) .beat-ic{box-shadow:0 0 0 2.5px var(--gold),0 12px 26px rgba(11,22,56,.12)}
-.beat-ic svg{width:52px;height:52px;stroke:var(--ink);fill:none;stroke-width:1.7;
+/* ============================ the Dawraq elements — periodic-table trio (light zone) ============================ */
+.elems{display:flex;align-items:stretch;justify-content:center;gap:8px;max-width:1020px;margin-inline:auto}
+.elem{flex:0 1 260px;text-align:center}
+.elem-tile{position:relative;background:var(--paper);border:3px solid var(--ink);border-radius:14px;
+  padding:20px 16px 16px;box-shadow:6px 6px 0 rgba(20,34,79,.12)}
+.elem:nth-child(1) .elem-tile{rotate:-.8deg}
+.elem:nth-child(3) .elem-tile{rotate:.7deg}
+.elem:nth-child(5) .elem-tile{rotate:-.6deg}
+.elem-no{position:absolute;top:10px;inset-inline-start:12px;font-size:13px;font-weight:800;color:var(--blue-d)}
+.elem-mass{position:absolute;top:10px;inset-inline-end:12px;font-size:11px;font-weight:700;color:var(--muted);opacity:.7}
+.elem-sym{font-size:58px;font-weight:900;color:var(--ink);line-height:1.05}
+.elem-sym em{font-style:normal;color:var(--gold)}
+.elem-name{display:block;font-size:18px;font-weight:800;color:var(--ink);margin-top:2px}
+.elem-tile svg{width:30px;height:30px;stroke:var(--blue-d);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;margin:8px auto 0}
+.elem p{color:var(--muted);font-size:14.5px;max-width:26ch;margin:12px auto 0}
+.elem-bond{flex:none;align-self:center;color:var(--gold);display:flex;align-items:center;padding-bottom:64px}
+.elem-bond svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:2.4;
   stroke-linecap:round;stroke-linejoin:round}
-.beat-n{position:absolute;top:-6px;inset-inline-end:-6px;width:34px;height:34px;border-radius:50%;
-  background:var(--gold);color:var(--ink);font-weight:900;font-size:16px;
-  display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(11,22,56,.18)}
-.beat h3{font-size:20px;font-weight:800;margin-bottom:8px;color:var(--ink)}
-.beat p{color:var(--muted);font-size:15.5px;max-width:30ch;margin-inline:auto}
 
-/* ============================ goals — honeycomb (light zone, flyer echo) ============================ */
-.goal-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;max-width:1080px;margin-inline:auto}
-.goal{flex:0 1 330px;display:flex;align-items:center;gap:16px;background:var(--paper);
-  border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;
-  box-shadow:0 10px 26px rgba(11,22,56,.08)}
-.goal:nth-child(2n){rotate:.6deg}
-.goal:nth-child(3n){rotate:-.5deg}
-.hex{flex:none;width:64px;height:58px;position:relative;display:flex;align-items:center;justify-content:center;
-  background:var(--gold);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
-.hex::before{content:"";position:absolute;inset:3px;background:var(--space);
-  clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
-.hex svg{position:relative;z-index:1;width:28px;height:28px;stroke:var(--gold);fill:none;
-  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.goal h3{font-size:17px;font-weight:800;line-height:1.35;color:var(--ink)}
-.goal p{font-size:14px;color:var(--muted);margin-top:2px}
-
-/* ============================ constellation route — how a journey works (space zone) ============================ */
-.route{position:relative;max-width:920px;margin-inline:auto;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.route::before{content:"";position:absolute;top:44px;inset-inline:9%;z-index:0;
-  border-top:2px dotted rgba(245,194,27,.55)}
-.jstep{position:relative;z-index:1;text-align:center;padding:0 6px}
-.jnode{width:88px;height:88px;margin:0 auto 14px;border-radius:50%;position:relative;
-  background:radial-gradient(circle at 34% 30%,var(--space-2),var(--space) 80%);
-  border:1.5px solid rgba(245,194,27,.45);
+/* ============================ the skills molecule — 5 goals as bonded atoms ============================ */
+.mol{position:relative;max-width:1040px;margin-inline:auto}
+.mol-bonds{position:absolute;top:0;inset-inline:0;height:136px;z-index:0;pointer-events:none}
+.mol-bonds svg{width:100%;height:100%;display:block}
+.mol-bonds polyline{fill:none;stroke:var(--blue-d);stroke-width:2.5;opacity:.3}
+.mol-row{position:relative;z-index:1;display:flex;justify-content:space-between;gap:10px}
+.atom{flex:1 1 0;min-width:0;text-align:center}
+.atom:nth-child(even){translate:0 44px}
+.atom-c{width:92px;height:92px;margin:0 auto;border-radius:50%;
+  background:var(--sky);border:2.5px solid var(--blue-d);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 22px rgba(245,194,27,.15)}
-.jnode svg{width:40px;height:40px;stroke:var(--gold);fill:none;stroke-width:1.7;
+  box-shadow:0 8px 20px rgba(11,22,56,.12)}
+.atom:nth-child(3) .atom-c{border-color:var(--gold-d);background:#FDF6E0}
+.atom-c svg{width:40px;height:40px;stroke:var(--ink);fill:none;stroke-width:1.7;
   stroke-linecap:round;stroke-linejoin:round}
-.jbadge{position:absolute;top:-4px;inset-inline-start:-4px;width:28px;height:28px;border-radius:50%;
-  background:var(--blue);color:#fff;font-weight:900;font-size:14px;
-  display:flex;align-items:center;justify-content:center}
-.jstep h3{font-size:17px;font-weight:800;margin-bottom:6px;color:var(--ink-l)}
-.jstep p{font-size:14px;color:var(--muted-l);max-width:24ch;margin-inline:auto}
+.atom h3{font-size:15.5px;font-weight:800;color:var(--ink);margin-top:12px;line-height:1.3}
+.atom p{font-size:13px;color:var(--muted);margin-top:4px;max-width:20ch;margin-inline:auto}
+.mol-tail{height:44px}
+
+/* ============================ test-tube rack — steps as filling tubes ============================ */
+.tubes{position:relative;display:flex;justify-content:center;gap:44px;max-width:900px;margin-inline:auto;
+  padding-top:14px}
+.tubes::before{content:"";position:absolute;top:54px;inset-inline:4%;height:12px;border-radius:8px;
+  background:var(--space-2);border:1px solid rgba(255,255,255,.14);z-index:0}
+.tube{position:relative;z-index:1;flex:0 1 170px;min-width:0;text-align:center}
+.tube .tube-n{top:-10px;inset-inline-start:calc(50% - 45px)}
+.tube-glass{position:relative;width:62px;height:148px;margin:0 auto 16px;
+  border:2.5px solid rgba(255,255,255,.38);border-top:none;
+  border-radius:4px 4px 31px 31px;overflow:hidden;
+  background:rgba(255,255,255,.04)}
+.tube-glass::before{content:"";position:absolute;top:0;inset-inline:-6px;height:7px;
+  border-radius:6px;background:rgba(255,255,255,.38)}
+.tube-fill{position:absolute;bottom:0;inset-inline:0;height:var(--fill,40%);
+  background:linear-gradient(180deg,rgba(46,155,232,.75),rgba(15,95,168,.9));
+  box-shadow:0 0 18px rgba(46,155,232,.5)}
+.tube-fill::before{content:"";position:absolute;top:0;inset-inline:0;height:4px;background:rgba(255,255,255,.45)}
+.tube-fill i{position:absolute;border-radius:50%;background:rgba(255,255,255,.5)}
+.tube-fill i:nth-child(1){width:5px;height:5px;bottom:18%;inset-inline-start:22%}
+.tube-fill i:nth-child(2){width:8px;height:8px;bottom:44%;inset-inline-end:24%}
+.tube-fill i:nth-child(3){width:4px;height:4px;bottom:66%;inset-inline-start:40%}
+.tube:last-child .tube-fill{background:linear-gradient(180deg,rgba(245,194,27,.85),rgba(184,134,11,.95));
+  box-shadow:0 0 20px rgba(245,194,27,.55)}
+.tube-glass svg{position:absolute;top:12px;inset-inline:0;margin-inline:auto;width:30px;height:30px;
+  stroke:rgba(255,255,255,.85);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tube-n{position:absolute;top:-13px;inset-inline-start:calc(50% - 42px);width:28px;height:28px;border-radius:50%;
+  background:var(--gold);color:var(--ink);font-weight:900;font-size:14px;
+  display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.tube h3{font-size:16.5px;font-weight:800;color:var(--ink-l);margin-bottom:5px}
+.tube p{font-size:13.5px;color:var(--muted-l);max-width:20ch;margin-inline:auto}
+/* light-zone variant (e.g. schools order steps) */
+.zone-light .tubes::before{background:var(--sky);border-color:var(--line)}
+.zone-light .tube-glass{border-color:rgba(20,34,79,.4);background:rgba(238,245,252,.5)}
+.zone-light .tube-glass::before{background:rgba(20,34,79,.4)}
+.zone-light .tube-glass svg{stroke:var(--ink)}
+.zone-light .tube h3{color:var(--ink)}
+.zone-light .tube p{color:var(--muted)}
+
+/* ============================ lab seal — circular validation stamp ============================ */
+.seal-lab{flex:none;width:160px;height:160px;position:relative}
+.seal-lab svg{width:100%;height:100%;display:block}
+.seal-lab .rim{fill:none;stroke:var(--gold-d);stroke-width:2}
+.seal-lab .rim2{fill:none;stroke:var(--gold-d);stroke-width:1;opacity:.6}
+.seal-lab text{fill:var(--gold-d);font-weight:700;font-size:8.2px;letter-spacing:.22em;font-family:inherit;
+  direction:ltr /* Latin rim text must not inherit the page's RTL or textPath collapses */}
+.seal-lab .seal-ok{fill:var(--ink);font-size:15px;font-weight:900;letter-spacing:0}
+.seal-lab .seal-fl{stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+html.anim .seal-lab{animation:sealIn .6s cubic-bezier(.2,.7,.3,1) both}
+@keyframes sealIn{from{opacity:0;rotate:-8deg;scale:1.15}to{opacity:1;rotate:-4deg;scale:1}}
+html:not(.anim) .seal-lab{rotate:-4deg}
 
 /* ============================ validation band (light zone) ============================ */
 .valid .wrap{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;max-width:980px}
@@ -263,19 +320,24 @@ html.anim .o-sun{animation:sunPulse 5s ease-in-out infinite alternate}
 .phero h1{font-size:clamp(30px,4vw,44px);font-weight:900;color:#fff}
 .phero .lead{color:var(--muted-l);margin-top:12px;font-size:17.5px;max-width:64ch;margin-inline:auto}
 
-/* ============================ footer — the deep field ============================ */
-footer.site{background:var(--space-3);color:#fff;padding:52px 0 26px;position:relative;overflow:hidden}
+/* ============================ footer — the mission log ============================ */
+footer.site{background:var(--space-3);color:#fff;padding:50px 0 24px;position:relative;overflow:hidden}
 footer.site .wrap{position:relative;z-index:2}
-footer.site .top{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:34px;margin-bottom:34px}
-.f-brand img{width:190px;height:auto;margin-bottom:14px}
+.f-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;margin-bottom:8px}
+.f-brand img{width:200px;height:auto;margin-bottom:12px}
 .f-brand p{color:var(--muted-l);font-size:14.5px;max-width:34ch}
-footer.site h4{font-size:15.5px;font-weight:800;color:var(--gold);margin-bottom:12px}
-footer.site .top a{display:block;color:#E6ECF9;text-decoration:none;padding:5px 0;font-size:15px;min-height:30px}
-footer.site .top a:hover{color:var(--gold)}
-footer.site .row{display:flex;align-items:center;gap:9px;color:#E6ECF9;font-size:15px;padding:5px 0}
-footer.site .row a{display:inline;padding:0}
-.f-ic{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
-footer.site .legal{border-top:1px solid var(--line-l);padding-top:20px;
+.f-console{display:flex;flex-direction:column;gap:4px;min-width:0}
+.f-line{display:flex;align-items:center;gap:10px;font-size:15px;color:#E6ECF9;min-height:34px;
+  letter-spacing:.02em}
+.f-prompt{flex:none;color:var(--gold);font-weight:900;font-size:17px;line-height:1}
+.f-line a{color:#E6ECF9;text-decoration:none}
+.f-line a:hover{color:var(--gold)}
+.f-line .sep{color:var(--muted-l);opacity:.6;padding-inline:4px}
+.f-const{display:block;width:100%;height:40px;margin:14px 0 12px;opacity:.7}
+.f-const line{stroke:rgba(255,255,255,.22);stroke-width:1}
+.f-const circle{fill:var(--gold)}
+.f-const .cb{fill:var(--blue)}
+footer.site .legal{border-top:1px solid var(--line-l);padding-top:18px;
   display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
   color:var(--muted-l);font-size:13.5px}
 footer.site .legal a{color:var(--muted-l)}
@@ -439,15 +501,31 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
   .hero-meta{gap:20px}
   .hero-meta b{font-size:23px}
   .wave svg{height:44px}
-  .beats{grid-template-columns:1fr;gap:34px;max-width:420px}
-  .beats::before{inset-inline:auto;inset-inline-start:calc(50% - 1px);top:8%;bottom:8%;height:auto;
-    border-top:none;border-inline-start:3px dashed var(--line)}
-  .route{grid-template-columns:repeat(2,1fr);gap:26px 12px;max-width:460px}
-  .route::before{display:none}
+  .stat-bubs{justify-content:center;gap:14px}
+  .sbub:nth-child(1){width:98px;height:98px}
+  .sbub:nth-child(2){width:86px;height:86px}
+  .sbub:nth-child(3){width:92px;height:92px}
+  .elems{flex-direction:column;align-items:center;gap:6px}
+  .elem{flex-basis:auto;max-width:340px}
+  .elem-bond{padding-bottom:0;rotate:90deg}
+  .mol-bonds{display:none}
+  .mol-row{flex-direction:column;gap:26px;max-width:420px;margin-inline:auto;position:relative}
+  .mol-row::before{content:"";position:absolute;top:4%;bottom:4%;inset-inline-start:45px;width:2.5px;
+    background:var(--blue-d);opacity:.25}
+  .atom{display:grid;grid-template-columns:92px 1fr;gap:16px;text-align:start;align-items:center}
+  .atom:nth-child(even){translate:0 0}
+  .atom .atom-c{margin:0;position:relative;z-index:1}
+  .atom h3{margin-top:0}
+  .atom p{margin-inline:0;max-width:none}
+  .atom div:last-child{min-width:0}
+  .mol-tail{display:none}
+  .tubes{flex-wrap:wrap;gap:30px 18px}
+  .tubes::before{display:none}
+  .tube{flex:0 1 40%}
   .valid .wrap{grid-template-columns:1fr;text-align:center}
-  .valid-flask{margin-inline:auto;width:92px}
+  .valid-flask,.seal-lab{margin-inline:auto}
   .chips{justify-content:center}
-  footer.site .top{grid-template-columns:1fr;gap:26px}
+  .f-top{flex-direction:column;gap:24px}
   footer.site .legal{justify-content:center;text-align:center}
   .aw-btn{bottom:16px;inset-inline-end:14px}
   .aw-panel{bottom:80px;inset-inline-end:14px}
@@ -463,11 +541,13 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
   .orbit{width:min(320px,94%)}
   .o-dot{width:10px;height:10px}
   .o-dot.g{width:13px;height:13px}
-  .goal{flex-basis:100%}
-  .beat-ic{width:96px;height:96px}
-  .beat-ic svg{width:44px;height:44px}
-  .jnode{width:76px;height:76px}
-  .jnode svg{width:34px;height:34px}
+  .elem-sym{font-size:48px}
+  .atom{grid-template-columns:76px 1fr}
+  .atom-c{width:76px;height:76px}
+  .atom-c svg{width:32px;height:32px}
+  .mol-row::before{inset-inline-start:37px}
+  .tube-glass{width:54px;height:128px}
+  .seal-lab{width:130px;height:130px}
   .btn{padding:12px 20px;font-size:15.5px}
   .aw-btn{width:52px;height:52px}
   .aw-btn svg{width:28px;height:28px}
@@ -491,38 +571,6 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
 .jr-phero-fx{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.85}
 .jr-phero-fx svg{position:absolute;inset-block-end:0;inset-inline:0;inline-size:100%;
   block-size:62%;display:block}
-
-/* ---- 2 · what is a journey — the route ticket ---- */
-.jr-ticket{position:relative;max-inline-size:960px;margin-inline:auto;background:var(--paper);
-  border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 28px rgba(11,22,56,.10);
-  padding:28px 30px 34px;overflow:hidden}
-.jr-ticket::before{content:"";position:absolute;inset-block-start:0;inset-inline:0;block-size:6px;
-  background:linear-gradient(90deg,var(--gold),var(--blue))}
-.jr-ticket-head{display:flex;align-items:center;gap:16px;
-  padding-block-end:22px;margin-block-end:26px;border-block-end:2px dashed var(--line)}
-.jr-ticket-stamp{flex:none;inline-size:56px;block-size:56px;border-radius:14px;background:var(--space);
-  display:flex;align-items:center;justify-content:center}
-.jr-ticket-stamp svg{inline-size:28px;block-size:28px;stroke:var(--gold);fill:none;stroke-width:1.8;
-  stroke-linecap:round;stroke-linejoin:round}
-.jr-ticket-title{display:flex;flex-direction:column;gap:2px;min-inline-size:0}
-.jr-ticket-k{font-size:19px;font-weight:900;color:var(--ink)}
-.jr-ticket-s{font-size:14.5px;font-weight:600;color:var(--muted)}
-
-.jr-route{position:relative;list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.jr-route::before{content:"";position:absolute;inset-block-start:34px;inset-inline:11%;z-index:0;
-  border-block-start:3px dashed rgba(29,143,224,.4)}
-.jr-stop{position:relative;z-index:1;text-align:center;padding-inline:6px}
-.jr-stop-n{position:absolute;inset-block-start:-4px;inset-inline-start:50%;margin-inline-start:14px;
-  inline-size:26px;block-size:26px;border-radius:50%;background:var(--gold);color:var(--ink);
-  font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 10px rgba(11,22,56,.18)}
-.jr-stop-ic{inline-size:72px;block-size:72px;margin:0 auto 14px;border-radius:50%;background:var(--sky);
-  border:3px solid var(--paper);box-shadow:0 0 0 2.5px var(--blue),0 10px 22px rgba(11,22,56,.12);
-  display:flex;align-items:center;justify-content:center}
-.jr-stop-ic svg{inline-size:34px;block-size:34px;stroke:var(--ink);fill:none;stroke-width:1.7;
-  stroke-linecap:round;stroke-linejoin:round}
-.jr-stop h3{font-size:16.5px;font-weight:800;color:var(--ink);margin-block-end:5px}
-.jr-stop p{font-size:14px;color:var(--muted);max-inline-size:24ch;margin-inline:auto}
 
 /* ---- 3 · inside the kit — the lab bench ---- */
 .jr-bench{position:relative;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;
@@ -606,9 +654,6 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
   .jr-days{gap:24px}
 }
 @media(max-width:700px){
-  .jr-route{grid-template-columns:repeat(2,1fr);gap:30px 14px}
-  .jr-route::before{display:none}
-  .jr-ticket{padding:24px 20px 28px}
   .jr-bench{gap:16px}
   .jr-item{flex-basis:150px}
   .jr-item-lg{flex-basis:100%}
@@ -617,8 +662,6 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
   .jr-cab-points{gap:18px}
 }
 @media(max-width:520px){
-  .jr-route{grid-template-columns:1fr;gap:26px}
-  .jr-stop-n{margin-inline-start:22px}
   .jr-item{flex-basis:100%;max-inline-size:300px}
   .jr-day{flex-basis:140px}
   .jr-day-badge{inline-size:104px;block-size:104px}
@@ -658,45 +701,6 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
 .sc-id-foot{background:var(--sky);border-block-start:1px solid var(--line);
   padding:14px 28px;text-align:center;font-size:13px;color:var(--muted)}
 
-/* ---- 3 · what the school receives — clipboard checklist ---- */
-.sc-clip{position:relative;max-inline-size:680px;margin-block-start:16px;margin-inline:auto;
-  background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 28px rgba(11,22,56,.10);
-  padding:36px 30px 28px}
-.sc-clip-top{position:absolute;inset-block-start:-14px;inset-inline-start:50%;translate:-50% 0;
-  inline-size:120px;block-size:26px;background:var(--space);border-radius:8px;
-  box-shadow:0 4px 10px rgba(11,22,56,.22)}
-.sc-clip-top::after{content:"";position:absolute;inset-block-start:-8px;inset-inline-start:50%;
-  translate:-50% 0;inline-size:46px;block-size:16px;background:var(--gold);border-radius:5px}
-.sc-check{list-style:none;display:flex;flex-direction:column;gap:4px}
-.sc-check li{display:flex;align-items:flex-start;gap:16px;padding:14px 6px;
-  border-block-end:1px solid var(--sky)}
-.sc-check li:last-child{border-block-end:none}
-.sc-check li:nth-child(even){margin-inline-start:16px}
-.sc-tick{flex:none;inline-size:34px;block-size:34px;border-radius:50%;background:var(--gold);
-  display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(245,194,27,.35)}
-.sc-tick svg{inline-size:18px;block-size:18px;stroke:var(--ink);fill:none;stroke-width:2.6;
-  stroke-linecap:round;stroke-linejoin:round}
-.sc-check-txt{display:flex;flex-direction:column;gap:2px}
-.sc-check-txt b{font-size:17px;font-weight:800;color:var(--ink)}
-.sc-check-txt span{font-size:14.5px;color:var(--muted)}
-
-/* ---- 4 · how to order — numbered dashed path ---- */
-.sc-steps{position:relative;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
-  max-inline-size:900px;margin-inline:auto}
-.sc-steps::before{content:"";position:absolute;inset-block-start:40px;inset-inline:16%;z-index:0;
-  border-block-start:3px dashed rgba(245,194,27,.6)}
-.sc-step{position:relative;z-index:1;text-align:center;padding-inline:8px}
-.sc-step-n{position:relative;inline-size:80px;block-size:80px;margin:0 auto 14px;border-radius:50%;
-  background:linear-gradient(160deg,var(--space),var(--space-2));color:#fff;font-size:30px;font-weight:900;
-  display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(11,22,56,.22)}
-.sc-step-ic{position:absolute;inset-block-start:-6px;inset-inline-start:50%;margin-inline-start:14px;
-  inline-size:34px;block-size:34px;border-radius:50%;background:var(--gold);
-  display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(11,22,56,.18)}
-.sc-step-ic svg{inline-size:18px;block-size:18px;stroke:var(--ink);fill:none;stroke-width:2;
-  stroke-linecap:round;stroke-linejoin:round}
-.sc-step h3{font-size:18px;font-weight:800;color:var(--ink);margin-block-end:6px}
-.sc-step p{font-size:14.5px;color:var(--muted);max-inline-size:26ch;margin-inline:auto}
-
 /* ---- 5 · why Dawraq — staggered trust points ---- */
 .sc-why-sec{background:var(--sky)}
 .sc-why{display:flex;flex-wrap:wrap;justify-content:center;gap:26px;max-inline-size:940px;margin-inline:auto}
@@ -721,11 +725,8 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
   .sc-row dt{inline-size:38%}
 }
 @media(max-width:700px){
-  .sc-steps{grid-template-columns:1fr;gap:26px;max-inline-size:420px}
-  .sc-steps::before{display:none}
   .sc-why{gap:20px}
   .sc-trust:nth-child(2){transform:none}
-  .sc-clip{padding:34px 20px 24px}
 }
 @media(max-width:520px){
   .sc-id-head{flex-direction:column;align-items:flex-start;gap:16px}
@@ -734,7 +735,6 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
   .sc-id-rows{padding-inline:20px}
   .sc-row{flex-direction:column;gap:3px}
   .sc-row dt{inline-size:auto}
-  .sc-step-n{inline-size:72px;block-size:72px;font-size:27px}
   .sc-trust{flex-basis:100%;max-inline-size:320px}
 }
 
@@ -750,46 +750,6 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
 /* ---------------- direct channel tiles (staggered, not identical) -------- */
 .ct-channels{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
   max-width:1000px;margin-inline:auto;align-items:start}
-.ct-tile{position:relative;display:flex;align-items:center;gap:16px;
-  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
-  padding:22px;text-decoration:none;color:var(--ink);
-  box-shadow:0 10px 26px rgba(11,22,56,.08);overflow:hidden;
-  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
-.ct-tile::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;
-  inline-size:5px;background:var(--blue)}
-.ct-tile:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(11,22,56,.16);
-  border-color:transparent}
-.ct-tile:focus-visible{outline:3px solid var(--blue-d);outline-offset:3px}
-
-/* hand-arranged vertical stagger on desktop */
-.ct-tile--wa{transform:translateY(-16px)}
-.ct-tile--wa:hover{transform:translateY(-20px)}
-.ct-tile--email{transform:translateY(10px)}
-.ct-tile--email:hover{transform:translateY(6px)}
-
-.ct-tile-ic{flex:none;inline-size:56px;block-size:56px;border-radius:16px;
-  display:flex;align-items:center;justify-content:center;background:var(--sky)}
-.ct-tile-ic svg{inline-size:28px;block-size:28px;fill:none;stroke:var(--blue-d);
-  stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.ct-tile--phone .ct-tile-ic{background:rgba(29,143,224,.12)}
-.ct-tile--phone .ct-tile-ic svg{stroke:var(--blue-d)}
-.ct-tile--phone::before{background:var(--blue)}
-.ct-tile--wa .ct-tile-ic{background:rgba(31,175,84,.14)}
-.ct-tile--wa .ct-tile-ic svg{stroke:var(--wa)}
-.ct-tile--wa::before{background:var(--wa)}
-.ct-tile--email .ct-tile-ic{background:rgba(245,194,27,.20)}
-.ct-tile--email .ct-tile-ic svg{stroke:var(--gold-d)}
-.ct-tile--email::before{background:var(--gold)}
-
-.ct-tile-body{display:flex;flex-direction:column;gap:2px;flex:1;min-inline-size:0}
-.ct-tile-k{font-weight:800;font-size:17px;color:var(--ink)}
-.ct-tile-v{font-weight:700;font-size:15px;color:var(--blue-d);word-break:break-word}
-.ct-tile-sub{font-size:13.5px;color:var(--muted)}
-.ct-tile-arrow{flex:none;color:var(--muted);opacity:.55;
-  transition:opacity .16s ease,transform .16s ease}
-.ct-tile-arrow svg{inline-size:20px;block-size:20px;fill:none;stroke:currentColor;
-  stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.ct-tile:hover .ct-tile-arrow{opacity:1;transform:translateX(-3px)}
 
 /* ---------------- callback form (clean sheet) --------------------------- */
 .ct-form{max-width:680px;margin-inline:auto;background:var(--paper);
@@ -841,16 +801,11 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
   .ct-tile{padding:20px 18px}
 }
 @media(max-width:700px){
-  .ct-channels{grid-template-columns:1fr;max-width:460px}
-  .ct-tile,.ct-tile--wa,.ct-tile--email{transform:none}
-  .ct-tile:hover,.ct-tile--wa:hover,.ct-tile--email:hover{transform:translateY(-3px)}
   .ct-grid{grid-template-columns:1fr}
   .ct-form{padding:22px 18px}
 }
 @media(max-width:520px){
   .ct-form{padding:20px 15px}
-  .ct-tile-ic{inline-size:50px;block-size:50px}
-  .ct-tile-ic svg{inline-size:25px;block-size:25px}
 }
 
 
@@ -937,5 +892,126 @@ html.anim .ck-banner{animation:ck-rise .28s cubic-bezier(.2,.75,.25,1) both}
   .lx-num-body h2{font-size:18px}
 }
 
-/* leader fix: long email must not break mid-word */
-.ct-tile--email .ct-tile-v{font-size:13px;white-space:nowrap;letter-spacing:-.01em}
+
+/* ===== MERGED: v2-js.css ===== */
+/* ---------------- schools v2: cargo manifest (sc2-) ---------------- */
+.sc2-manifest{position:relative;max-width:640px;margin-inline:auto;background:var(--paper);
+  border:1.6px solid var(--ink);border-radius:14px;box-shadow:6px 6px 0 rgba(20,34,79,.10);
+  overflow:hidden}
+.sc2-mf-head{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:var(--space);color:var(--ink-l);padding:14px 20px}
+.sc2-mf-titles{display:flex;flex-direction:column;min-width:0}
+.sc2-mf-kicker{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--gold)}
+.sc2-mf-title{font-size:18px;font-weight:900}
+.sc2-barcode{flex:none;width:92px;height:34px;border-radius:3px;
+  background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 5px,#fff 5px 6px,transparent 6px 10px);
+  opacity:.85}
+.sc2-rows{list-style:none;padding:10px 20px 16px}
+.sc2-row{display:flex;align-items:flex-start;gap:14px;padding:12px 2px;
+  border-bottom:1px dashed var(--line)}
+.sc2-row:last-child{border-bottom:none}
+.sc2-check{flex:none;width:36px;height:36px;border-radius:50%;border:2.5px solid var(--gold-d);
+  rotate:-6deg;opacity:.85;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.sc2-check svg{width:20px;height:20px;stroke:var(--gold-d);fill:none;stroke-width:2.6;
+  stroke-linecap:round;stroke-linejoin:round}
+.sc2-row:nth-child(even) .sc2-check{rotate:5deg}
+.sc2-row-txt{min-width:0}
+.sc2-row-txt b{display:block;font-size:16.5px;font-weight:800;color:var(--ink)}
+.sc2-row-txt span{font-size:14px;color:var(--muted)}
+.sc2-ready{position:absolute;bottom:44px;inset-inline-end:22px;rotate:-8deg;
+  border:2.5px solid var(--gold-d);color:var(--gold-d);border-radius:8px;
+  padding:5px 14px;font-size:14px;font-weight:900;letter-spacing:.08em;opacity:.55;
+  pointer-events:none}
+@media(max-width:700px){
+  .sc2-mf-head{padding:12px 16px}
+  .sc2-barcode{width:64px;height:28px}
+  .sc2-rows{padding:8px 14px 14px}
+  .sc2-ready{bottom:56px;inset-inline-end:12px;font-size:12.5px}
+}
+@media(max-width:520px){
+  .sc2-check{width:32px;height:32px}
+  .sc2-check svg{width:17px;height:17px}
+  .sc2-mf-title{font-size:16px}
+}
+
+
+/* ===== MERGED: v2-contact.css ===== */
+/* =========================================================================
+   contact.html — ct2- MISSION-CONTROL CONSOLE  (scratch; leader merges)
+   Replaces the generic "3 tiles in a grid" template tell with a Dawraq-native
+   navy console panel sitting ON the white .zone-light. Deep-space panel →
+   text inside MUST be light (--ink-l / --muted-l). LED colors decorative only.
+   Reuses shared tokens: --space --space-2 --ink-l --muted-l --blue --gold
+   and the shared .stars block. Logical props, fail-open, no mask:url().
+   ========================================================================= */
+
+/* ---------------- the console panel -------------------------------------- */
+.ct2-console{position:relative;overflow:hidden;
+  max-width:1000px;margin-inline:auto;
+  background:var(--space);border:1px solid rgba(255,255,255,.14);
+  border-radius:22px;padding:26px;
+  box-shadow:0 24px 60px rgba(6,11,31,.30)}
+/* subtle inner starfield sits behind; keep real content above it */
+.ct2-console>.stars{z-index:0}
+.ct2-console>.ct2-keys,
+.ct2-console>.ct2-cap{position:relative;z-index:1}
+
+/* ---------------- the three console keys --------------------------------- */
+.ct2-keys{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+.ct2-key{position:relative;display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:11px;
+  min-block-size:44px;
+  background:var(--space-2);border:1px solid rgba(255,255,255,.16);
+  border-radius:16px;padding:18px;
+  text-decoration:none;color:var(--ink-l);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 22px rgba(6,11,31,.30);
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+.ct2-key:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.28)}
+.ct2-key:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* LED status dot — decorative glow, never carries text meaning */
+.ct2-led{flex:none;inline-size:10px;block-size:10px;border-radius:50%;
+  transition:box-shadow .16s ease}
+.ct2-key--phone .ct2-led{background:var(--blue);box-shadow:0 0 10px var(--blue)}
+.ct2-key--wa    .ct2-led{background:#25D366;box-shadow:0 0 10px #25D366}
+.ct2-key--email .ct2-led{background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.ct2-key--phone:hover .ct2-led,.ct2-key--phone:focus-visible .ct2-led{box-shadow:0 0 18px var(--blue)}
+.ct2-key--wa:hover    .ct2-led,.ct2-key--wa:focus-visible    .ct2-led{box-shadow:0 0 18px #25D366}
+.ct2-key--email:hover .ct2-led,.ct2-key--email:focus-visible .ct2-led{box-shadow:0 0 18px var(--gold)}
+
+/* channel icon — light stroke on navy */
+.ct2-key-ic{flex:none;display:flex;align-items:center;justify-content:center}
+.ct2-key-ic svg{inline-size:26px;block-size:26px;fill:none;stroke:var(--ink-l);
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* label + value */
+.ct2-key-body{display:flex;flex-direction:column;gap:3px;min-inline-size:0}
+.ct2-key-k{font-weight:800;font-size:16px;color:var(--ink-l)}
+.ct2-key-v{color:var(--muted-l);font-size:13.5px;white-space:nowrap}
+/* long email must never wrap mid-word — trim to fit the key */
+.ct2-key--email .ct2-key-v{font-size:12.5px;letter-spacing:-.01em}
+
+/* ---------------- caption line ------------------------------------------- */
+.ct2-cap{margin-block-start:20px;text-align:center;
+  color:var(--muted-l);font-size:13.5px;line-height:1.6}
+
+/* ---------------- responsive --------------------------------------------- */
+@media(max-width:700px){
+  .ct2-keys{grid-template-columns:1fr}
+  /* keys stack full-width; content becomes a horizontal row: LED+icon start */
+  .ct2-key{flex-direction:row;align-items:center;text-align:start;gap:14px}
+  .ct2-key-body{align-items:flex-start}
+}
+@media(max-width:520px){
+  .ct2-console{padding:20px;border-radius:18px}
+  .ct2-key{padding:15px 16px}
+}
+
+/* leader variance pass: bench items must not read as an equal card grid */
+.jr-item:nth-child(1){translate:0 -10px;rotate:1.2deg}
+.jr-item:nth-child(2){translate:0 6px}
+.jr-item:nth-child(3){background:var(--sky);translate:0 -4px}
+.jr-item:nth-child(4){rotate:-1.6deg;translate:0 8px}
+.jr-item:nth-child(5){background:var(--sky);translate:0 -2px;rotate:1.4deg}
+.jr-item-lg{box-shadow:6px 6px 0 rgba(20,34,79,.10);border:1.6px solid var(--ink)}
