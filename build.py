@@ -26,6 +26,10 @@ SITE_URL = "https://dawraq.vercel.app"
 # JOURNEYS_LIST stays False until Mostafa sends the real names of the 20 journeys.
 FLAGS = {"JOURNEYS_LIST": False}
 
+# IndexNow ownership key — must stay stable and match the {key}.txt file at the
+# site root. Ping after deploys: POST https://api.indexnow.org/indexnow
+INDEXNOW_KEY = "c4036613d05e05cc0c3d2117a1140bc3"
+
 META_RE = re.compile(r"^\s*<!--meta(.*?)-->", re.DOTALL)
 FLAG_RE = re.compile(r"<!--IF:(\w+)-->(.*?)<!--ENDIF:\1-->", re.DOTALL)
 
@@ -72,6 +76,7 @@ def write_sitemap(pages):
     open(os.path.join(DIST, "sitemap.xml"), "w", encoding="utf-8").write(xml)
     open(os.path.join(DIST, "robots.txt"), "w", encoding="utf-8").write(
         "User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n" % SITE_URL)
+    open(os.path.join(DIST, INDEXNOW_KEY + ".txt"), "w", encoding="utf-8").write(INDEXNOW_KEY)
     # llms.txt — AI-search discovery file (ChatGPT/Perplexity-class crawlers)
     open(os.path.join(DIST, "llms.txt"), "w", encoding="utf-8").write(
 """# DAWRAQ (דורק / دورق)
