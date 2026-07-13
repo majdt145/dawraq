@@ -72,6 +72,29 @@ def write_sitemap(pages):
     open(os.path.join(DIST, "sitemap.xml"), "w", encoding="utf-8").write(xml)
     open(os.path.join(DIST, "robots.txt"), "w", encoding="utf-8").write(
         "User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n" % SITE_URL)
+    # llms.txt — AI-search discovery file (ChatGPT/Perplexity-class crawlers)
+    open(os.path.join(DIST, "llms.txt"), "w", encoding="utf-8").write(
+"""# DAWRAQ (דורק / دورق)
+
+> Experiential science program for Israeli elementary schools (grades 1-6):
+> 20 hands-on "learning journeys" themed on UN International Days, led by the
+> animated character DAWRAK. Each journey ships as a classroom kit (experiment
+> materials, animation videos, workbooks, teacher guide) stored in a custom
+> classroom cabinet. Experiments written and validated by Dr. Shadi Farah,
+> senior scientist at the Technion. Approved program #43964 in the Israeli
+> Ministry of Education GEFEN marketplace (fixed 4%% budget). Site is bilingual
+> Hebrew/Arabic on single URLs (client-side toggle). Registered TM 378828.
+
+## Pages
+- [Home](%s/): program overview, goals, how a journey works
+- [The Journeys](%s/journeys.html): journey anatomy, kit contents, UN days, classroom cabinet
+- [For Schools / GEFEN](%s/schools.html): program card #43964, what schools receive, how to order
+- [Contact](%s/contact.html): phone 052-775-8483, WhatsApp, Dawraqfactory@gmail.com
+
+## Contact
+- Email: Dawraqfactory@gmail.com
+- Phone/WhatsApp: +972-52-775-8483
+""" % (SITE_URL, SITE_URL, SITE_URL, SITE_URL))
 
 
 def parse_meta(text):
