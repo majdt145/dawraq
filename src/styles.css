@@ -217,7 +217,6 @@ html.anim .o-sun{animation:sunPulse 5s ease-in-out infinite alternate}
 .elem:nth-child(3) .elem-tile{rotate:.7deg}
 .elem:nth-child(5) .elem-tile{rotate:-.6deg}
 .elem-no{position:absolute;top:10px;inset-inline-start:12px;font-size:13px;font-weight:800;color:var(--blue-d)}
-.elem-mass{position:absolute;top:10px;inset-inline-end:12px;font-size:11px;font-weight:700;color:var(--muted);opacity:.7}
 .elem-sym{font-size:58px;font-weight:900;color:var(--ink);line-height:1.05}
 .elem-sym em{font-style:normal;color:var(--gold)}
 .elem-name{display:block;font-size:18px;font-weight:800;color:var(--ink);margin-top:2px}
@@ -1789,7 +1788,7 @@ html.anim .jr3c-points li:nth-child(3).is-in{animation-delay:.18s}
   .elem-name{font-size:13.5px;margin-top:0}
   .elem-tile svg{width:20px;height:20px;margin-top:3px}
   .elem-no{font-size:10.5px;top:6px;inset-inline-start:8px}
-  .elem-mass{font-size:9px;top:6px;inset-inline-end:8px}
+
   .elem p{font-size:13px;margin:0;max-width:none}
   .elem-bond{display:none}
 
