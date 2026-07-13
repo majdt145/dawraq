@@ -1971,62 +1971,81 @@ html{scrollbar-color:var(--gold-d) var(--space-3)}
   border:1.6px solid rgba(245,194,27,.5);border-radius:22px;padding:26px 26px 26px 22px;
   text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 14px 30px rgba(11,22,56,.2);
   transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-.ct4-hero:hover{transform:translateY(-3px);border-color:var(--gold);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 20px 40px rgba(11,22,56,.28)}
-.ct4-hero:active{transform:translateY(-1px) scale(.99)}
-.ct4-hero:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.ct4-hero-ic{position:relative;z-index:1;flex:none;width:76px;height:76px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(circle at 34% 30%,rgba(245,194,27,.32),rgba(245,194,27,.08) 70%);
-  border:2px solid var(--gold)}
-.ct4-hero-ic svg{width:34px;height:34px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.ct4-rings{position:absolute;top:50%;inset-inline-start:60px;translate:-50% -50%;width:76px;height:76px;pointer-events:none}
-.ct4-rings i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);opacity:0}
-html.anim .ct4-rings i{animation:ct4Beam 3s ease-out infinite}
-html.anim .ct4-rings i:nth-child(2){animation-delay:1s}
-html.anim .ct4-rings i:nth-child(3){animation-delay:2s}
 @keyframes ct4Beam{0%{transform:scale(.7);opacity:.7}100%{transform:scale(2.1);opacity:0}}
-.ct4-hero-body{position:relative;z-index:1;display:flex;flex-direction:column;gap:4px;min-width:0}
-.ct4-tag{align-self:flex-start;background:var(--gold);color:var(--ink);font-weight:800;font-size:12px;
-  border-radius:30px;padding:4px 12px;margin-bottom:4px}
-.ct4-hero-k{font-size:19px;font-weight:800;color:#fff}
-.ct4-hero-v{font-size:25px;font-weight:900;color:var(--gold);letter-spacing:.02em}
-
-/* SECONDARY — two quiet lines */
-.ct4-side{display:grid;grid-template-rows:1fr 1fr;gap:18px}
-.ct4-row{display:flex;align-items:center;gap:14px;text-decoration:none;
-  background:var(--space-2);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 18px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.07);
-  transition:transform .18s ease,border-color .18s ease,background .18s ease}
-.ct4-row:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.28);background:#16276a}
-.ct4-row:active{transform:scale(.98)}
-.ct4-row:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.ct4-node{flex:none;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center}
-.ct4-node svg{width:23px;height:23px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.ct4-node--wa{background:rgba(37,211,102,.16);box-shadow:0 0 14px rgba(37,211,102,.3)}
-.ct4-node--wa svg{stroke:#25D366}
-.ct4-node--email{background:rgba(46,155,232,.16);box-shadow:0 0 14px rgba(46,155,232,.3)}
-.ct4-node--email svg{stroke:var(--blue-l)}
-.ct4-row-body{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
-.ct4-row-k{font-size:15.5px;font-weight:800;color:#fff}
-.ct4-row-v{font-size:13.5px;color:var(--on-space-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ct4-arrow{flex:none;width:20px;height:20px;fill:none;stroke:var(--on-space-muted);stroke-width:2;
-  stroke-linecap:round;stroke-linejoin:round;transition:transform .18s ease,stroke .18s ease}
-.ct4-row:hover .ct4-arrow{stroke:var(--gold);transform:translateX(-4px)}
 
 @media(max-width:760px){
   .ct4{grid-template-columns:1fr;gap:14px}
 }
+
+/* =========================================================================
+   CONTACT — the hand-off (ct5-): DAWRAQ's business card resting on the lab
+   paper + an open boxless contact ledger. Replaces the dark-slab hub.
+   ========================================================================= */
+.ct5{display:grid;grid-template-columns:.92fr 1.08fr;gap:46px;align-items:center;
+  max-width:880px;margin-inline:auto}
+
+/* ---- the business card (decorative object) ---- */
+.ct5-card-wrap{position:relative;justify-self:center;rotate:-4deg}
+html.anim .ct5-card-wrap{animation:ct5Settle .7s cubic-bezier(.2,.7,.3,1) both}
+@keyframes ct5Settle{from{opacity:0;rotate:-9deg;translate:0 -18px}to{opacity:1;rotate:-4deg;translate:0 0}}
+.ct5-card{position:relative;width:min(320px,100%);aspect-ratio:1.7;border-radius:16px;
+  background:linear-gradient(150deg,var(--space) 30%,var(--space-2));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 22px 44px rgba(11,22,56,.28),inset 0 1px 0 rgba(255,255,255,.08);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:22px;overflow:hidden}
+.ct5-card img{width:72%;height:auto}
+.ct5-card-planet{position:absolute;top:12px;inset-inline-start:14px;width:26px;height:20px;opacity:.8}
+.ct5-card-planet circle{fill:var(--blue)}
+.ct5-card-planet ellipse{fill:none;stroke:var(--gold);stroke-width:2}
+.ct5-card-line{width:46px;height:3px;border-radius:2px;background:var(--gold)}
+.ct5-card-tag{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--gold)}
+/* gold paperclip over the top edge */
+.ct5-clip{position:absolute;top:-15px;inset-inline-start:34px;width:22px;height:42px;z-index:2;
+  border:3.5px solid var(--gold-d);border-radius:11px 11px 9px 9px;
+  border-bottom-color:transparent;opacity:.9;rotate:6deg}
+.ct5-clip::before{content:"";position:absolute;inset:5px 4.5px -6px;border:3.5px solid var(--gold-d);
+  border-radius:8px;border-top-color:transparent}
+
+/* ---- the ledger: rows straight on the paper ---- */
+.ct5-ledger{display:flex;flex-direction:column;min-width:0}
+.ct5-row{display:flex;align-items:center;gap:16px;text-decoration:none;
+  padding:16px 4px;min-height:64px;border-bottom:2.5px dotted var(--line);
+  transition:background .16s ease}
+.ct5-row:first-child{border-top:2.5px dotted var(--line)}
+.ct5-row:hover{background:rgba(46,155,232,.05)}
+.ct5-row:active{background:rgba(245,194,27,.09)}
+.ct5-row:focus-visible{outline:3px solid var(--gold-d);outline-offset:2px;border-radius:8px}
+.ct5-ic{flex:none;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--paper)}
+.ct5-ic svg{width:22px;height:22px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ct5-ic--tel{border:2.5px solid var(--gold-d)}
+.ct5-ic--tel svg{stroke:var(--gold-d)}
+.ct5-ic--wa{border:2.5px solid #1FAF54}
+.ct5-ic--wa svg{stroke:#1FAF54}
+.ct5-ic--mail{border:2.5px solid var(--blue-d)}
+.ct5-ic--mail svg{stroke:var(--blue-d)}
+.ct5-body{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.ct5-k{font-size:16px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ct5-fast{font-style:normal;font-size:11.5px;font-weight:800;color:var(--ink);background:var(--gold);
+  border-radius:20px;padding:2.5px 10px}
+.ct5-v{font-size:17px;font-weight:700;color:var(--blue-d);letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ct5-go{flex:none;width:20px;height:20px;fill:none;stroke:var(--muted);stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;opacity:.5;transition:transform .16s ease,opacity .16s ease,stroke .16s ease}
+.ct5-row:hover .ct5-go{opacity:1;stroke:var(--gold-d);transform:translateX(-4px)}
+
+@media(max-width:760px){
+  .ct5{grid-template-columns:1fr;gap:26px}
+  .ct5-card{width:min(250px,78%)}
+}
 @media(max-width:700px){
-  .ct4-hero{padding:18px;gap:14px}
-  .ct4-hero-ic{width:60px;height:60px}
-  .ct4-hero-ic svg{width:27px;height:27px}
-  .ct4-rings{width:60px;height:60px;inset-inline-start:48px}
-  .ct4-hero-k{font-size:16px}
-  .ct4-hero-v{font-size:21px}
-  .ct4-tag{font-size:11px}
-  .ct4-side{gap:12px}
-  .ct4-row{padding:13px 15px;gap:12px}
-  .ct4-node{width:42px;height:42px}
-  .ct4-row-v{font-size:12.5px}
+  .ct5-row{padding:12px 2px;min-height:56px;gap:12px}
+  .ct5-ic{width:40px;height:40px}
+  .ct5-ic svg{width:19px;height:19px}
+  .ct5-k{font-size:14.5px}
+  .ct5-v{font-size:15px}
+  .ct5-fast{font-size:10.5px}
+  .ct5-card{width:min(220px,72%)}
+  .ct5-clip{top:-12px;width:18px;height:34px}
 }
