@@ -1766,7 +1766,10 @@ html.anim .jr3c-points li:nth-child(3).is-in{animation-delay:.18s}
   .o-legend .chip{padding:4px 9px;font-size:11px;gap:5px}
   .o-legend .chip svg{width:12px;height:12px}
   .o-cap{margin-top:6px;font-size:11.5px}
-  .hero-orbit{order:2}
+  /* mobile: logo/orbit + animation sit ABOVE the text & buttons (Majd's call) */
+  .hero-orbit{order:-1}
+  .hero-copy{order:1}
+  .hero .wrap{gap:12px}
 
   /* tubes → horizontal gauge rows */
   .tubes{flex-direction:column;flex-wrap:nowrap;gap:12px;max-width:340px;padding-top:0}
