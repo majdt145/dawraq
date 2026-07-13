@@ -1888,3 +1888,67 @@ html.anim .jr3c-points li:nth-child(3).is-in{animation-delay:.18s}
   .stat-bubs{margin-top:12px}
   .orbit{width:min(188px,62%)}
 }
+
+/* =========================================================================
+   IDENTITY LAYER — lab-notebook paper, liquid underlines, clay-tactile
+   controls, the wordmark's planet, branded selection/scrollbar.
+   Stays at EOF (cascade). All motion respects html.anim / stop-animations.
+   ========================================================================= */
+
+/* lab graph paper in the light zones */
+.zone-light{background-color:var(--paper);
+  background-image:linear-gradient(rgba(29,143,224,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(29,143,224,.05) 1px,transparent 1px);
+  background-size:26px 26px}
+.zone-light .alt{background-color:var(--sky);
+  background-image:linear-gradient(rgba(29,143,224,.065) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(29,143,224,.065) 1px,transparent 1px);
+  background-size:26px 26px}
+/* keep document-style surfaces crisp white above the grid */
+.sc2-manifest,.ct-form,.sc-id-card{position:relative}
+
+/* liquid gold underline beneath every section heading */
+.sec-head h2::after{content:"";display:block;width:76px;height:8px;margin:10px auto 0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M0 5 C4 1 8 1 12 5 S20 9 24 5' fill='none' stroke='%23F5C21B' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x 0 50%}
+.valid h2::after{content:"";display:block;width:76px;height:8px;margin:10px 0 0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M0 5 C4 1 8 1 12 5 S20 9 24 5' fill='none' stroke='%23F5C21B' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x 0 50%}
+
+/* clay-tactile controls: soft top highlight + squish on press */
+.btn{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.35),0 10px 24px rgba(11,22,56,.18)}
+.btn-gold{box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 10px 26px rgba(245,194,27,.35)}
+.btn:active{transform:translateY(0) scale(.96)}
+.rv-wa:active,.aw-btn:active{transform:scale(.93)}
+.ct2-key:active{transform:translateY(-1px) scale(.97)}
+.lang button{transition:background .15s ease,color .15s ease}
+.lang button:active{scale:.94}
+
+/* the wordmark's ringed planet, drawn once for all star layers */
+.stars .o-planet{position:absolute;width:34px;height:26px;opacity:.85}
+.stars .o-planet circle{fill:var(--blue)}
+.stars .o-planet ellipse{fill:none;stroke:var(--gold);stroke-width:2}
+html.anim .stars .o-planet{animation:planetDrift 14s ease-in-out infinite alternate}
+@keyframes planetDrift{from{translate:0 0}to{translate:0 -10px}}
+
+/* branded selection + scrollbar */
+::selection{background:var(--gold);color:var(--ink)}
+html{scrollbar-color:var(--gold-d) var(--space-3)}
+::-webkit-scrollbar{width:12px}
+::-webkit-scrollbar-track{background:var(--space-3)}
+::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:8px;border:3px solid var(--space-3)}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+@media(max-width:700px){
+  .sec-head h2::after,.valid h2::after{margin-top:7px;height:7px;width:62px}
+  .zone-light,.zone-light .alt{background-size:22px 22px}
+}
+
+/* identity layer: reclaim underline height on tight screens */
+@media(min-width:761px) and (max-height:800px){
+  .sec-head h2::after,.valid h2::after{margin-top:5px;height:6px}
+  .sec-head{margin-bottom:18px}
+}
+@media(max-width:700px){
+  .sec-head{margin-bottom:12px}
+  .sec-head h2::after,.valid h2::after{margin-top:5px;height:6px}
+  .jr3y-ring svg{width:min(238px,62vw)}
+}
