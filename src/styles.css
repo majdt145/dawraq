@@ -1730,3 +1730,158 @@ html.anim .jr3c-points li:nth-child(3).is-in{animation-delay:.18s}
   .ct-form{padding:16px 20px}
   .ct-lbl{font-size:14px}
 }
+
+/* =========================================================================
+   MOBILE FIT — every section must be visible whole on one phone screen
+   (budget ~720px at 390w). Stays at EOF so it wins the cascade over all
+   merged page blocks. Layout-only; no content hidden.
+   ========================================================================= */
+@media(max-width:700px){
+  section{padding:30px 0}
+  .sec-head{margin-bottom:18px}
+  .sec-head h2{font-size:23px}
+  .sec-head .sub{font-size:14px;margin-top:6px}
+  .tick{font-size:12px;margin-bottom:8px}
+  .wave svg{height:34px}
+  .phero{padding:36px 0 22px}
+  .phero h1{font-size:26px}
+  .phero .lead{font-size:14.5px}
+
+  /* hero — one phone screen */
+  .hero{padding:30px 0 18px}
+  .hero .wrap{gap:18px}
+  .hero h1{font-size:24px;margin:12px 0 8px}
+  .hero .lead{font-size:14px;line-height:1.6;margin-bottom:14px}
+  .hero-cta{gap:8px}
+  .hero-cta .btn{padding:10px 16px;min-height:44px;font-size:14px}
+  .seal{font-size:12px;padding:5px 11px}
+  .stat-bubs{margin-top:14px;gap:10px}
+  .sbub:nth-child(1){width:80px;height:80px}
+  .sbub:nth-child(2){width:70px;height:70px;translate:0 8px}
+  .sbub:nth-child(3){width:74px;height:74px;translate:0 -4px}
+  .sbub b{font-size:17px}
+  .sbub span{font-size:10px}
+  .orbit{width:min(212px,70%);margin-top:0}
+  .o-legend{margin-top:8px;gap:6px}
+  .o-legend .chip{padding:4px 9px;font-size:11px;gap:5px}
+  .o-legend .chip svg{width:12px;height:12px}
+  .o-cap{margin-top:6px;font-size:11.5px}
+  .hero-orbit{order:2}
+
+  /* tubes → horizontal gauge rows */
+  .tubes{flex-direction:column;flex-wrap:nowrap;gap:12px;max-width:340px;padding-top:0}
+  .tube{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;text-align:start;flex-basis:auto}
+  .tube-glass{width:42px;height:88px;margin:0;border-width:2px}
+  .tube-glass::before{height:5px}
+  .tube-glass svg{width:18px;height:18px;top:7px}
+  .tube .tube-n{width:22px;height:22px;font-size:12px;top:-7px;inset-inline-start:32px}
+  .tube h3{font-size:15px;margin-bottom:2px}
+  .tube p{font-size:12.5px;max-width:none;margin:0}
+
+  /* element cards → tile-beside-text rows */
+  .elems{flex-direction:column;align-items:stretch;gap:12px;max-width:360px;margin-inline:auto}
+  .elem{display:grid;grid-template-columns:116px 1fr;gap:14px;align-items:center;text-align:start;max-width:none;flex-basis:auto}
+  .elem-tile{padding:12px 8px 10px}
+  .elem-sym{font-size:32px}
+  .elem-name{font-size:13.5px;margin-top:0}
+  .elem-tile svg{width:20px;height:20px;margin-top:3px}
+  .elem-no{font-size:10.5px;top:6px;inset-inline-start:8px}
+  .elem-mass{font-size:9px;top:6px;inset-inline-end:8px}
+  .elem p{font-size:13px;margin:0;max-width:none}
+  .elem-bond{display:none}
+
+  /* molecule — tighter chain */
+  .mol-row{gap:14px;max-width:360px}
+  .atom{grid-template-columns:60px 1fr;gap:12px}
+  .atom-c{width:60px;height:60px;border-width:2px}
+  .atom-c svg{width:25px;height:25px}
+  .atom h3{font-size:14px}
+  .atom p{font-size:12px;margin-top:1px}
+  .mol-row::before{inset-inline-start:29px}
+
+  /* validation + cta + footer */
+  .valid .wrap{gap:14px}
+  .seal-lab{width:106px;height:106px}
+  .valid .vp{font-size:14.5px}
+  .chips{gap:8px;margin-top:12px}
+  .chip{font-size:12.5px;padding:7px 12px}
+  .cta .sub{font-size:14.5px;margin:10px 0 16px}
+  .cta-row{gap:8px}
+  .cta-row .btn{padding:10px 16px;min-height:44px;font-size:14px}
+  .cta .seal{margin-top:16px}
+  .f-brand img{width:150px}
+  .f-line{font-size:13.5px;min-height:28px}
+  .f-const{height:26px;margin:10px 0 8px}
+
+  /* schools/contact document blocks (mirror the laptop compaction) */
+  .sc-id-rows{padding:6px 16px 4px}
+  .sc-row{padding:7px 2px;flex-wrap:wrap;gap:4px 10px}
+  .sc-row dt{inline-size:auto;font-size:12.5px}
+  .sc-row dd{font-size:14.5px}
+  .sc-id-head{padding-block:10px}
+  .sc2-rows{padding:4px 12px 8px}
+  .sc2-row{padding:7px 2px;gap:10px}
+  .sc2-check{width:26px;height:26px;border-width:2px}
+  .sc2-check svg{width:14px;height:14px}
+  .sc2-row-txt b{display:inline;font-size:14px;margin-inline-end:6px}
+  .sc2-row-txt span{display:inline;font-size:12px}
+  .sc2-ready{font-size:11px;bottom:40px;padding:4px 10px}
+  .ct-form{padding:14px}
+  .ct-grid{gap:8px 12px}
+  .ct-field{gap:3px}
+  .ct-lbl{font-size:13.5px}
+  .ct-field input{min-block-size:42px;padding:8px 12px;font-size:15px}
+  .ct-field textarea{min-block-size:60px}
+
+  /* journeys v3 fragments */
+  .jr3y-day{gap:10px}
+}
+@media(max-width:520px){
+  .hero h1{font-size:22px}
+  .orbit{width:min(200px,66%)}
+}
+
+/* ---- MOBILE FIT round 2: grid placement fix + remaining tall sections ---- */
+@media(max-width:700px){
+  /* tube gauge rows: glass spans both rows so text sits beside it, not under it */
+  .tube{grid-template-rows:auto auto;row-gap:2px}
+  .tube-glass{grid-row:1 / span 2;grid-column:1}
+  .tube h3{grid-column:2;align-self:end;margin:0}
+  .tube p{grid-column:2;align-self:start}
+  /* hero: last squeeze under one screen */
+  .orbit{width:min(196px,64%)}
+  .hero .lead{margin-bottom:10px}
+  .o-legend .chip{font-size:10.5px;padding:4px 8px}
+  /* filmstrip: two frames per row on ALL phones, compact frames */
+  .jr3f-track{flex-direction:row;flex-wrap:wrap;gap:10px}
+  .jr3f-frame{flex:1 1 42%;min-width:0;padding:10px 8px}
+  .jr3f-scene svg{width:30px;height:30px}
+  .jr3f-title{font-size:13px}
+  .jr3f-sub{font-size:11px}
+  .jr3f-num{width:20px;height:20px;font-size:11px}
+  /* cabinet scene: shorter room */
+  .jr3c-scene{min-height:0;height:250px}
+  .jr3c-points{gap:10px}
+  /* schools trust: compact side rows instead of three tall cards */
+  .sc-why{flex-direction:column;gap:10px;max-inline-size:360px}
+  .sc-trust{flex-basis:auto;display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;
+    text-align:start;padding:12px 14px;rotate:0deg;transform:none}
+  .sc-trust:nth-child(2){transform:none}
+  .sc-trust-ic{inline-size:52px;block-size:52px;margin:0}
+  .sc-trust-ic svg{inline-size:26px;block-size:26px}
+  .sc-trust h3{font-size:15px;margin-block-end:2px}
+  .sc-trust p{font-size:12.5px;max-inline-size:none;margin-inline:0}
+  .sc-trust>div{min-width:0}
+}
+
+/* ---- MOBILE FIT round 3 ---- */
+@media(max-width:700px){
+  .sc-trust{grid-template-rows:auto auto;row-gap:2px}
+  .sc-trust-ic{grid-row:1 / span 2;grid-column:1}
+  .sc-trust h3{grid-column:2;align-self:end;margin:0}
+  .sc-trust p{grid-column:2;align-self:start}
+  .hero-copy>.seal{font-size:11.5px;padding:4px 10px}
+  .hero h1{margin:10px 0 6px}
+  .stat-bubs{margin-top:12px}
+  .orbit{width:min(188px,62%)}
+}
