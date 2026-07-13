@@ -81,40 +81,57 @@ nav: contact
   </div>
 </section>
 
-<!-- ===================== callback form ===================== -->
+<!-- ===================== callback form — lab request slip ===================== -->
 <section class="alt">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="tick"><i></i><i></i><i></i><span data-he="טופס חזרה" data-ar="نموذج معاودة الاتصال">טופס חזרה</span></span>
+      <span class="tick"><i></i><i></i><i></i><span data-he="טופס בקשה" data-ar="نموذج طلب">טופס בקשה</span></span>
       <h2 data-he="נחזור אליכם" data-ar="نعاود الاتصال بكم">נחזור אליכם</h2>
       <p class="sub" data-he="מלאו את הפרטים ונחזור אליכם עם כל המידע על התוכנית." data-ar="املؤوا التفاصيل وسنعاود الاتصال بكم مع كل المعلومات عن البرنامج.">מלאו את הפרטים ונחזור אליכם עם כל המידע על התוכנית.</p>
     </div>
 
-    <form class="ct-form rv" data-form="callback" novalidate>
+    <form class="ct3-slip rv" data-form="callback" novalidate>
       <!-- honeypot: hidden from users, catches bots -->
       <input type="text" name="website" class="ct-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-      <div class="ct-grid">
-        <label class="ct-field">
-          <span class="ct-lbl" data-he="שם מלא" data-ar="الاسم الكامل">שם מלא</span>
-          <input type="text" name="name" required autocomplete="name">
+      <!-- slip header: like a scientific request form -->
+      <div class="ct3-head">
+        <span class="ct3-head-t">
+          <span class="ct3-brand">DAWRAQ</span>
+          <span class="ct3-form-t" data-he="בקשת מסע לבית הספר" data-ar="طلب رحلة للمدرسة">בקשת מסע לבית הספר</span>
+        </span>
+        <span class="ct3-ref" aria-hidden="true">
+          <span class="ct3-barcode"></span>
+          <span class="ct3-ref-n" dir="ltr">REQ · גפ״ן 43964</span>
+        </span>
+      </div>
+
+      <!-- fields as fillable form-lines -->
+      <div class="ct3-body">
+        <label class="ct3-line">
+          <span class="ct3-lbl" data-he="שם מלא" data-ar="الاسم الكامل">שם מלא</span>
+          <input type="text" name="name" required autocomplete="name" placeholder="—">
         </label>
-        <label class="ct-field">
-          <span class="ct-lbl" data-he="טלפון" data-ar="هاتف">טלפון</span>
-          <input type="tel" name="phone" required autocomplete="tel" dir="ltr">
+        <label class="ct3-line">
+          <span class="ct3-lbl" data-he="טלפון" data-ar="هاتف">טלפון</span>
+          <input type="tel" name="phone" required autocomplete="tel" dir="ltr" placeholder="—">
         </label>
-        <label class="ct-field ct-field--full">
-          <span class="ct-lbl" data-he="בית ספר / רשות" data-ar="مدرسة / سلطة محلية">בית ספר / רשות</span>
-          <input type="text" name="school" autocomplete="organization">
+        <label class="ct3-line ct3-line--full">
+          <span class="ct3-lbl" data-he="בית ספר / רשות" data-ar="مدرسة / سلطة محلية">בית ספר / רשות</span>
+          <input type="text" name="school" autocomplete="organization" placeholder="—">
         </label>
-        <label class="ct-field ct-field--full">
-          <span class="ct-lbl" data-he="הודעה" data-ar="رسالة">הודעה</span>
-          <textarea name="message" rows="4"></textarea>
+        <label class="ct3-line ct3-line--full ct3-notes">
+          <span class="ct3-lbl" data-he="הערות" data-ar="ملاحظات">הערות</span>
+          <textarea name="message" rows="3" placeholder="—"></textarea>
         </label>
       </div>
 
-      <button type="submit" class="btn btn-gold" data-he="שלחו לנו" data-ar="أرسلوا لنا">שלחו לנו</button>
-      <p class="done" hidden data-he="תודה! נחזור אליכם בהקדם." data-ar="شكرًا! سنعاود الاتصال بكم قريبًا.">תודה! נחזור אליכם בהקדם.</p>
+      <!-- dispatch row -->
+      <div class="ct3-foot">
+        <span class="ct3-stamp" aria-hidden="true" data-he="מוכן לשליחה" data-ar="جاهز للإرسال">מוכן לשליחה</span>
+        <button type="submit" class="btn btn-gold" data-he="שלחו בקשה" data-ar="أرسلوا الطلب">שלחו בקשה</button>
+      </div>
+      <p class="done" hidden data-he="תודה! הבקשה התקבלה — נחזור אליכם בהקדם." data-ar="شكرًا! تمّ استلام الطلب — سنعاود الاتصال بكم قريبًا.">תודה! הבקשה התקבלה — נחזור אליכם בהקדם.</p>
       <p class="err" data-err="send" hidden data-he="השליחה נכשלה — נסו שוב או התקשרו אלינו." data-ar="فشل الإرسال — حاولوا مجددًا أو اتصلوا بنا.">השליחה נכשלה — נסו שוב או התקשרו אלינו.</p>
     </form>
   </div>
