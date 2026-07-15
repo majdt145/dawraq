@@ -2049,3 +2049,347 @@ html.anim .ct5-card-wrap{animation:ct5Settle .7s cubic-bezier(.2,.7,.3,1) both}
   .ct5-card{width:min(220px,72%)}
   .ct5-clip{top:-12px;width:18px;height:34px}
 }
+
+
+/* =========================================================================
+   MOBILE POLISH PASS (2026-07-15) - per-section phone-view redesign.
+   Six scoped blocks (#h-hero/#h-beats/#h-goals/#h-steps/#h-valid/#h-cta)
+   + one desktop patch for the beats DOM change. Loads LAST by design -
+   the section-id scoping and load order are what let these win the cascade.
+   ========================================================================= */
+/* ===== MOBILE POLISH: hero ===== */
+/* Section #h-hero only. RTL site → logical properties only. Loads last. */
+
+@media(max-width:760px){
+  /* 1 · MESSAGE FIRST — the copy leads; the orbit becomes the closing
+     signature. Overrides the old order flip (.hero-orbit{order:-1};
+     .hero-copy{order:1}) that buried the seal / H1 / lead / CTAs below the
+     fold. Scoped under #h-hero so it outranks the single-class rule. */
+  #h-hero .hero-copy{order:0}
+  #h-hero .hero-orbit{order:1}
+
+  /* even vertical rhythm between the copy block and the orbit signature */
+  #h-hero .wrap{gap:20px}
+
+  /* 2 · ORBIT = subordinate closing flourish — visible but never dwarfs the
+     copy. ~min(280px,76vw) at this range; centered, no top drift. */
+  #h-hero .orbit{width:min(280px,76vw);margin-block-start:0}
+
+  /* 4 · STAT BUBBLES — centered floating row, consistent ~20px rhythm with
+     the CTAs above and the orbit below, no crowding. */
+  #h-hero .stat-bubs{justify-content:center;gap:14px;margin-block-start:20px}
+
+  /* 3 · LEGEND CHIPS — tight, centered, all 4 within 2 rows at 390px;
+     caption ~12px beneath. */
+  #h-hero .o-legend{margin-block-start:16px;gap:7px;justify-content:center}
+  #h-hero .o-legend .chip{font-size:11.5px;padding:4px 9px;gap:5px}
+  #h-hero .o-legend .chip svg{width:12px;height:12px}
+  #h-hero .o-cap{margin-block-start:10px;font-size:12px}
+}
+
+@media(max-width:380px){
+  /* narrowest phones — shrink the closing orbit a touch, keep chips tight */
+  #h-hero .orbit{width:min(240px,80vw)}
+  #h-hero .o-legend .chip{font-size:11px;padding:4px 8px}
+}
+
+/* ===== MOBILE POLISH: beats ===== */
+/* Section #h-beats — "specimen cards + reaction chain".
+   Each .elem becomes a self-contained card: compact letter-badge at the
+   inline-start, name heading + icon + one-liner in the text cell. The
+   .elem-bond (killed with display:none in the base mobile rules) is revived
+   as a small gold chevron circle linking מ -> ע -> א. Everything is scoped
+   under #h-beats and loads last, so it wins ties over the base mobile blocks. */
+
+@media(max-width:700px){
+  /* vertical stack of cards + chain */
+  #h-beats .elems{
+    flex-direction:column;
+    align-items:stretch;
+    gap:5px;                       /* card 5px  bond  5px card rhythm */
+    max-width:340px;
+    margin-inline:auto;
+  }
+
+  /* ---- the specimen card ---- */
+  #h-beats .elem{
+    display:grid;
+    grid-template-columns:58px 1fr;
+    align-items:center;
+    gap:11px;
+    text-align:start;
+    max-width:none;
+    flex-basis:auto;
+    background:var(--paper);
+    border:2px solid var(--ink);
+    border-radius:13px;
+    padding:9px 12px;
+    box-shadow:4px 4px 0 rgba(20,34,79,.12);   /* same offset-shadow language as the tiles */
+  }
+  #h-beats .elem:nth-child(1){rotate:-.5deg}   /* tiny specimen tilt, alternating */
+  #h-beats .elem:nth-child(3){rotate:.4deg}
+  #h-beats .elem:nth-child(5){rotate:-.5deg}
+
+  /* ---- compact letter badge (big letter + gold dot + corner number) ---- */
+  #h-beats .elem-tile{
+    position:relative;
+    width:58px;height:58px;
+    display:flex;align-items:center;justify-content:center;
+    padding:0;
+    background:var(--sky);
+    border:2px solid var(--ink);
+    border-radius:10px;
+    box-shadow:3px 3px 0 rgba(20,34,79,.10);
+    rotate:0deg;                   /* keep badge upright inside the tilted card */
+  }
+  #h-beats .elem-sym{font-size:30px;line-height:1}
+  #h-beats .elem-no{
+    top:4px;inset-inline-start:6px;
+    font-size:9.5px;font-weight:800;color:var(--blue-d);
+  }
+
+  /* ---- text cell ---- */
+  #h-beats .elem-body{min-width:0}
+  #h-beats .elem-head{
+    display:flex;align-items:center;gap:6px;margin-bottom:2px;
+  }
+  #h-beats .elem-name{
+    display:inline;font-size:15.5px;font-weight:800;color:var(--ink);margin:0;
+    line-height:1.1;
+  }
+  #h-beats .elem-head svg{
+    width:17px;height:17px;flex:none;margin:0;
+    stroke:var(--blue-d);stroke-width:1.9;
+  }
+  #h-beats .elem p{
+    font-size:12.75px;line-height:1.4;color:var(--muted);
+    margin:0;max-width:none;
+  }
+
+  /* ---- reaction chain: gold circle + down chevron between cards ---- */
+  #h-beats .elem-bond{
+    display:flex;align-items:center;justify-content:center;
+    align-self:center;
+    width:22px;height:22px;margin:0 auto;padding:0;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 2px 5px rgba(20,34,79,.20);
+    rotate:0deg;
+  }
+  #h-beats .elem-bond svg{
+    width:14px;height:14px;margin:0;
+    stroke:var(--ink);stroke-width:2.6;
+    rotate:-90deg;                 /* base path is a left chevron -> rotate to point DOWN */
+  }
+}
+
+/* ===== LEADER PATCH: beats on DESKTOP after the mobile HTML surgery =====
+   The name+icon moved out of .elem-tile (into .elem-body>.elem-head) for the
+   mobile specimen cards. Without this patch the desktop tiles render as wide
+   half-empty boxes. Restore the periodic-tile composition: compact centered
+   tile (big letter + corner number), name+icon as a centered caption row,
+   paragraph beneath. */
+@media(min-width:701px){
+  #h-beats .elem-tile{width:170px;margin-inline:auto;padding:30px 12px 26px}
+  #h-beats .elem-head{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px}
+  #h-beats .elem-name{margin-top:0}
+  #h-beats .elem-head svg{width:24px;height:24px}
+  #h-beats .elem p{margin-top:10px}
+}
+
+/* ===== MOBILE POLISH: goals ===== */
+/* #h-goals — "vertical molecule": one dashed spine through the atom centers,
+   even atoms nudged inline-start so the chain zigzags like the desktop molecule. */
+
+@media(max-width:700px){
+  /* compact the section's own breathing room to pay for the bigger atoms
+     (rows grow 60->62px, gaps 14->16px; total stays <= the previous 547px) */
+  #h-goals{padding-block:20px 22px}
+
+  #h-goals .mol-row{
+    position:relative;
+    flex-direction:column;
+    gap:16px;
+    max-width:360px;
+    margin-inline:auto;
+  }
+
+  /* THE SPINE — dashed bond line through the circle centers, full column */
+  #h-goals .mol-row::before{
+    content:"";
+    position:absolute;
+    top:31px;                      /* center of first 62px atom */
+    bottom:31px;                   /* center of last 62px atom */
+    inset-inline-start:29.75px;    /* 31px center - half of 2.5px line */
+    width:2.5px;
+    background:repeating-linear-gradient(to bottom,var(--blue-d) 0 6px,transparent 6px 11px);
+    opacity:.45;
+  }
+
+  /* each atom: 62px circle + text block vertically centered beside it */
+  #h-goals .atom{
+    display:grid;
+    grid-template-columns:62px 1fr;
+    gap:14px;
+    align-items:center;
+    text-align:start;
+  }
+  /* zigzag echo of the desktop molecule: even atoms swing off the spine */
+  #h-goals .atom:nth-child(even){translate:0 0;margin-inline-start:26px}
+
+  /* circle sits ON the line: solid fill + z-index hide the dash behind it */
+  #h-goals .atom .atom-c{
+    width:62px;height:62px;margin:0;
+    position:relative;z-index:1;
+    border-width:2.5px;
+  }
+  #h-goals .atom-c svg{width:26px;height:26px}
+
+  #h-goals .atom h3{font-size:15px;margin-top:0;line-height:1.25}
+  #h-goals .atom p{font-size:13px;margin-top:2px;margin-inline:0;max-width:none}
+  #h-goals .atom div:last-child{min-width:0}
+}
+
+/* ===== MOBILE POLISH: steps ===== */
+/* Section #h-steps — "כל מסע — הרפתקה בארבעה שלבים" (4 test-tubes).
+   Goal: read as ONE connected lab sequence — docked numbered caps,
+   a dotted rack rail threading the glass column, even row rhythm.
+   Scoped under #h-steps only (.tubes/.tube reused on other pages). */
+
+@media(max-width:700px){
+
+  /* ---- container: vertical stack + even rhythm, anchor for the rail ---- */
+  #h-steps .tubes{
+    position:relative;
+    flex-direction:column;flex-wrap:nowrap;
+    gap:18px;                       /* consistent rhythm between rows */
+    max-width:330px;
+    margin-inline:auto;
+    padding-top:4px;
+  }
+
+  /* ---- rack rail: dotted vertical line down the glass-column centre,
+         BEHIND the glasses, linking step 1 -> 4 into one sequence ---- */
+  #h-steps .tubes::before{
+    content:"";
+    display:block;
+    position:absolute;
+    top:12px;bottom:14px;height:auto;   /* override base height:12px */
+    inset-inline-start:20px;            /* glass column centre is ~21px in */
+    inset-inline-end:auto;              /* override base inset-inline:4% */
+    inline-size:0;
+    background:none;
+    border:none;
+    border-inline-start:2px dashed rgba(245,194,27,.34);
+    border-radius:0;
+    z-index:0;
+  }
+
+  /* ---- row: glass | text, text vertically centred to the glass ---- */
+  #h-steps .tube{
+    position:relative;z-index:1;
+    display:grid;
+    grid-template-columns:42px 1fr;
+    grid-template-rows:auto auto;
+    column-gap:14px;row-gap:3px;
+    align-items:center;
+    text-align:start;
+  }
+
+  #h-steps .tube-glass{
+    grid-column:1;grid-row:1 / span 2;
+    justify-self:center;
+    width:42px;height:88px;margin:0;border-width:2px;
+  }
+  #h-steps .tube-glass svg{width:18px;height:18px;top:7px}
+
+  /* ---- number badge: docked cap centred on the glass top (stays OUTSIDE
+         .tube-glass so the glass overflow:hidden never clips it) ---- */
+  #h-steps .tube .tube-n{
+    top:-9px;
+    inset-inline-start:10px;        /* centre 22px badge on 42px glass (21-11) */
+    width:22px;height:22px;
+    font-size:12px;
+    box-shadow:0 3px 8px rgba(0,0,0,.35);
+  }
+
+  /* ---- text: tight, scannable ---- */
+  #h-steps .tube h3{
+    grid-column:2;grid-row:1;
+    align-self:end;
+    font-size:15.5px;line-height:1.25;
+    margin:0;
+  }
+  #h-steps .tube p{
+    grid-column:2;grid-row:2;
+    align-self:start;
+    font-size:13px;line-height:1.3;
+    max-width:none;margin:2px 0 0;
+  }
+}
+
+/* ===== MOBILE POLISH: valid ===== */
+/* Section #h-valid — "certificate" composition on phones.
+   Seal stamp -> tick -> heading -> tight readable paragraph -> uniform chip stack.
+   All selectors scoped under #h-valid (.chips/.chip/.tick/.vp are shared). */
+
+@media(max-width:700px){
+  /* trim the band's vertical padding for a compact certificate card */
+  #h-valid{padding-block:16px}
+
+  /* seal: uniform certificate stamp size (overrides shared .seal-lab rules that
+     load earlier — 106px @≤700 / 130px @≤520) */
+  #h-valid .seal-lab{inline-size:114px;block-size:114px}
+
+  /* tight, even vertical rhythm: seal -> tick -> heading -> paragraph -> chips */
+  #h-valid .wrap{gap:12px}
+  #h-valid .tick{margin-bottom:8px}
+  #h-valid h2{margin-bottom:6px}
+  #h-valid .vp{font-size:14.5px;line-height:1.45;max-inline-size:34ch;margin-inline:auto}
+
+  /* chips: tidy uniform certificate stack — equal width, centered content,
+     consistent gold tab, no per-item wobble */
+  #h-valid .chips{gap:8px;margin-top:12px;flex-direction:column;align-items:center}
+  #h-valid .chip{inline-size:262px;max-inline-size:100%;box-sizing:border-box;
+    justify-content:center;font-size:12.5px;padding:7px 16px;rotate:0}
+  #h-valid .chip::before{inset-inline-start:calc(50% - 17px)}
+}
+
+/* ===== MOBILE POLISH: cta ===== */
+
+@media(max-width:700px){
+  /* -- section rhythm: give the decor its own clear strip above the headline -- */
+  #h-cta{padding-block:44px 36px}
+  #h-cta .sub{margin:10px auto 18px;max-width:36ch;text-wrap:balance}
+
+  /* -- decor: pin planet + star to the top corners, out of the text column.
+        Both svgs carry inline top/inset-inline-start styles, so !important
+        is required to beat them (inline styles outrank any selector). -- */
+  #h-cta .stars svg.o-planet{
+    top:10px!important;
+    inset-inline-start:6%!important;
+    width:30px;height:23px;
+  }
+  #h-cta .stars svg:not(.o-planet){
+    top:16px!important;
+    inset-inline-start:auto!important;
+    inset-inline-end:8%!important;
+  }
+
+  /* -- buttons: uniform centered stack, identical widths, kept order -- */
+  #h-cta .cta-row{flex-direction:column;align-items:center;gap:10px}
+  #h-cta .cta-row .btn{
+    width:100%;max-width:320px;
+    min-height:48px;padding:12px 16px;font-size:15px;line-height:1.2;
+  }
+  /* ltr email string must never overflow the pill at 344px */
+  #h-cta .cta-row .btn-ghost{font-size:14px;letter-spacing:0}
+
+  /* -- GEFEN seal: centered below the stack with a steady gap -- */
+  #h-cta .seal{margin-top:16px;max-width:100%}
+}
+
+@media(max-width:360px){
+  #h-cta .cta-row .btn-ghost{font-size:13px}
+  #h-cta .seal{font-size:11px;padding:5px 10px}
+}
