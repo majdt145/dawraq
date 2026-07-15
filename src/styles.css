@@ -2061,35 +2061,33 @@ html.anim .ct5-card-wrap{animation:ct5Settle .7s cubic-bezier(.2,.7,.3,1) both}
 /* Section #h-hero only. RTL site → logical properties only. Loads last. */
 
 @media(max-width:760px){
-  /* 1 · MESSAGE FIRST — the copy leads; the orbit becomes the closing
-     signature. Overrides the old order flip (.hero-orbit{order:-1};
-     .hero-copy{order:1}) that buried the seal / H1 / lead / CTAs below the
-     fold. Scoped under #h-hero so it outranks the single-class rule. */
-  #h-hero .hero-copy{order:0}
-  #h-hero .hero-orbit{order:1}
+  /* 1 · LOGO/ORBIT FIRST — Majd's standing call (his original ca107b06): the
+     flask-orbit brand visual leads on mobile, the copy follows underneath.
+     Scoped under #h-hero so it outranks the single-class base rule. */
+  #h-hero .hero-orbit{order:0}
+  #h-hero .hero-copy{order:1}
 
-  /* even vertical rhythm between the copy block and the orbit signature */
-  #h-hero .wrap{gap:20px}
+  /* even vertical rhythm between the orbit and the copy block below it */
+  #h-hero .wrap{gap:18px}
 
-  /* 2 · ORBIT = subordinate closing flourish — visible but never dwarfs the
-     copy. ~min(280px,76vw) at this range; centered, no top drift. */
-  #h-hero .orbit{width:min(280px,76vw);margin-block-start:0}
+  /* 2 · ORBIT = the hero visual up top — present but leaves room for the
+     copy underneath. */
+  #h-hero .orbit{width:min(300px,80vw);margin-block-start:0}
 
-  /* 4 · STAT BUBBLES — centered floating row, consistent ~20px rhythm with
-     the CTAs above and the orbit below, no crowding. */
-  #h-hero .stat-bubs{justify-content:center;gap:14px;margin-block-start:20px}
+  /* 4 · STAT BUBBLES — centered floating row, consistent rhythm, no crowding. */
+  #h-hero .stat-bubs{justify-content:center;gap:14px;margin-block-start:18px}
 
   /* 3 · LEGEND CHIPS — tight, centered, all 4 within 2 rows at 390px;
-     caption ~12px beneath. */
-  #h-hero .o-legend{margin-block-start:16px;gap:7px;justify-content:center}
+     caption ~12px beneath. They ride with the orbit at the top. */
+  #h-hero .o-legend{margin-block-start:14px;gap:7px;justify-content:center}
   #h-hero .o-legend .chip{font-size:11.5px;padding:4px 9px;gap:5px}
   #h-hero .o-legend .chip svg{width:12px;height:12px}
   #h-hero .o-cap{margin-block-start:10px;font-size:12px}
 }
 
 @media(max-width:380px){
-  /* narrowest phones — shrink the closing orbit a touch, keep chips tight */
-  #h-hero .orbit{width:min(240px,80vw)}
+  /* narrowest phones — shrink the lead orbit a touch, keep chips tight */
+  #h-hero .orbit{width:min(255px,82vw)}
   #h-hero .o-legend .chip{font-size:11px;padding:4px 8px}
 }
 
