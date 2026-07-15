@@ -2262,10 +2262,10 @@ html.anim .ct5-card-wrap{animation:ct5Settle .7s cubic-bezier(.2,.7,.3,1) both}
   #h-steps .tubes{
     position:relative;
     flex-direction:column;flex-wrap:nowrap;
-    gap:18px;                       /* consistent rhythm between rows */
+    gap:22px;                       /* room for the lifted number cap above each tube */
     max-width:370px;
     margin-inline:auto;
-    padding-top:4px;
+    padding-top:8px;
   }
 
   /* ---- rack rail: dotted vertical line down the glass-column centre,
@@ -2303,13 +2303,14 @@ html.anim .ct5-card-wrap{animation:ct5Settle .7s cubic-bezier(.2,.7,.3,1) both}
     justify-self:center;
     width:42px;height:88px;margin:0;border-width:2px;
   }
-  #h-steps .tube-glass svg{width:18px;height:18px;top:7px}
+  /* icon raised into the clear dark zone at the top of the glass */
+  #h-steps .tube-glass svg{width:16px;height:16px;top:5px}
 
   /* ---- number badge: docked cap centred on the glass top (stays OUTSIDE
          .tube-glass so the glass overflow:hidden never clips it) ---- */
   #h-steps .tube .tube-n{
-    top:-9px;
-    inset-inline-start:calc(50% - 11px);  /* centre 22px badge on the rail-docked glass */
+    top:-20px;                             /* cap sits ABOVE the glass, clear of the icon */
+    inset-inline-start:calc(50% - 11px);   /* centre 22px badge on the rail-docked glass */
     width:22px;height:22px;
     font-size:12px;
     box-shadow:0 3px 8px rgba(0,0,0,.35);
