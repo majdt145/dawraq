@@ -1628,9 +1628,11 @@ html.anim .jr3c-points li:nth-child(3).is-in{animation-delay:.18s}
 .splash{display:none}
 html.anim.sp-live .splash{display:flex;position:fixed;inset:0;z-index:120;
   align-items:center;justify-content:center;cursor:pointer;
-  background:radial-gradient(circle at 50% 42%,#101B45 0%,var(--space) 62%);
   animation:spOut .7s ease 5.2s forwards}
 @keyframes spOut{to{opacity:0;visibility:hidden}}
+.sp-bg{position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 42%,#101B45 0%,var(--space) 62%)}
+html.sp-lock{overflow:hidden} /* JS-managed while the splash plays; fail-open */
 html.anim.sp-live .splash .stars{animation:spFade .9s ease both}
 @keyframes spFade{from{opacity:0}}
 .sp-stack{display:flex;flex-direction:column;align-items:center;gap:24px;
@@ -1652,6 +1654,25 @@ html.anim.sp-live .splash .o-dot{animation:spDot .55s cubic-bezier(.2,.75,.3,1.4
 .sp-title em::after{content:"";position:absolute;inset-inline:0;bottom:4px;height:26%;
   background:rgba(245,194,27,.22);border-radius:6px;z-index:-1}
 @keyframes spRise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+/* ---- the morph handoff (JS adds .sp-fly at ~4.75s + sets the --f* vars):
+   the splash orbit flies onto the hero orbit, the wordmark tucks into the
+   header logo, the headline yields to its hero twin, the backdrop melts.
+   animation:none frees elements from their finished fill-both holds (held
+   end-values equal the base styles, so nothing jumps). Without JS, .sp-fly
+   never appears and the spOut fallback above still clears the overlay. ---- */
+.splash.sp-still,.splash.sp-still .sp-rw,.splash.sp-still .sp-core,
+.splash.sp-still .sp-brand,.splash.sp-still .sp-title{animation:none}
+.splash.sp-fly{cursor:default}
+.splash.sp-fly .sp-bg{opacity:0;transition:opacity .75s ease}
+.splash.sp-fly .sp-orbit{opacity:0;
+  transform:translate(var(--fx-o),var(--fy-o)) scale(var(--fs-o));
+  transition:transform .85s cubic-bezier(.45,.05,.15,1),opacity .3s ease .6s}
+.splash.sp-fly .sp-brand{opacity:0;
+  transform:translate(var(--fx-b),var(--fy-b)) scale(var(--fs-b));
+  transition:transform .85s cubic-bezier(.45,.05,.15,1),opacity .3s ease .6s}
+.splash.sp-fly .sp-title{opacity:0;transform:translateY(-16px);
+  transition:opacity .4s ease,transform .4s ease}
+
 /* the header joins the end card at 4s, sliding in ABOVE the overlay
    (z 130 > splash 120, still below .skip at 200) */
 html.anim.sp-live header.site{animation:spHeader .65s cubic-bezier(.2,.75,.3,1.1) 4s both}

@@ -53,8 +53,10 @@
     initSplash();
   });
 
-  /* ===== splash intro (home): CSS drives the timeline; JS marks it seen,
-     lets the user skip (click / Esc), and removes the node when done ===== */
+  /* ===== splash intro (home): CSS drives the build-up; at ~4.75s JS measures
+     the real page and MORPHS the splash into it — orbit flies onto the hero
+     orbit, wordmark tucks into the header logo. JS also marks the splash
+     seen, locks scroll while it plays, and allows click/Esc skip. ===== */
   function initSplash() {
     var sp = document.getElementById("splash");
     if (!sp) return;
@@ -64,20 +66,55 @@
       return;
     }
     try { sessionStorage.setItem("dq_splash", "1"); } catch (e) {}
+    root.classList.add("sp-lock");
     var done = false;
     function finish() {
       if (done) return;
       done = true;
-      /* dropping .sp-live kills both the overlay and the header animation
-         rules — header lands in its normal resting state, no jump */
       root.classList.remove("sp-live");
+      root.classList.remove("sp-lock");
       sp.parentNode && sp.parentNode.removeChild(sp);
       document.removeEventListener("keydown", onKey);
     }
     function onKey(e) { if (e.key === "Escape") finish(); }
     sp.addEventListener("click", finish);
     document.addEventListener("keydown", onKey);
-    setTimeout(finish, 6100); /* just after the CSS fade-out completes */
+
+    /* center-to-center flight vector + scale from a splash element to its
+       landing target on the real page */
+    function vec(el, target) {
+      var a = el.getBoundingClientRect(), b = target.getBoundingClientRect();
+      if (!a.width || !b.width) return null;
+      return {
+        x: b.left + b.width / 2 - (a.left + a.width / 2),
+        y: b.top + b.height / 2 - (a.top + a.height / 2),
+        s: b.width / a.width,
+      };
+    }
+    function fly() {
+      if (done) return;
+      try {
+        var o = vec(sp.querySelector(".sp-orbit"), document.querySelector(".hero .orbit"));
+        var b = vec(sp.querySelector(".sp-brand"), document.querySelector("header.site .brand img"));
+        if (!o || !b) return; /* fall back to the pure-CSS spOut fade */
+        sp.style.setProperty("--fx-o", o.x + "px");
+        sp.style.setProperty("--fy-o", o.y + "px");
+        sp.style.setProperty("--fs-o", o.s);
+        sp.style.setProperty("--fx-b", b.x + "px");
+        sp.style.setProperty("--fy-b", b.y + "px");
+        sp.style.setProperty("--fs-b", b.s);
+        /* FLIP two-step: drop the finished entrance animations first and force
+           a reflow, otherwise Blink snaps the transform instead of
+           transitioning from the fill-mode-held value */
+        sp.classList.add("sp-still");
+        void sp.offsetWidth;
+        sp.classList.add("sp-fly");
+        setTimeout(finish, 1000);
+      } catch (e) { /* spOut + backstop still clean up */ }
+    }
+    /* after the header finishes sliding in (4.65s) so its rect is final */
+    setTimeout(fly, 4750);
+    setTimeout(finish, 7000); /* hard backstop, covers every path */
   }
 
   /* ===== header: solid white always; gains a shadow once scrolled ===== */
