@@ -6,6 +6,49 @@ desc_ar: 20 رحلة علوم تجريبية لتلاميذ الابتدائي (
 nav: home
 -->
 
+<!-- ============================ 0 · SPLASH INTRO ============================
+     Full-screen orbit build-up (~4s) → wordmark + headline → header slides in.
+     Plays once per visit (sessionStorage), only under html.anim.sp-live —
+     reduced-motion / stop-motion / repeat visits never see it. The timeline
+     is pure CSS (self-destructs without JS); app.js only marks it seen,
+     handles click/Esc skip, and removes the node. -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="stars"><i></i></div>
+  <div class="sp-stack">
+    <div class="sp-orbit">
+      <div class="sp-rw"><div class="o-ring o-r1">
+        <span class="o-dot g" style="left:100%;top:50%;--d:1.5s"></span>
+        <span class="o-dot" style="left:75%;top:93.3%;--d:1.71s"></span>
+        <span class="o-dot" style="left:25%;top:93.3%;--d:1.92s"></span>
+        <span class="o-dot" style="left:0%;top:50%;--d:2.13s"></span>
+        <span class="o-dot" style="left:25%;top:6.7%;--d:2.34s"></span>
+        <span class="o-dot" style="left:75%;top:6.7%;--d:2.55s"></span>
+      </div></div>
+      <div class="sp-rw sp-rw2"><div class="o-ring o-r2">
+        <span class="o-dot" style="left:100%;top:50%;--d:1.57s"></span>
+        <span class="o-dot" style="left:81.2%;top:89%;--d:1.78s"></span>
+        <span class="o-dot g" style="left:38.9%;top:98.7%;--d:1.99s"></span>
+        <span class="o-dot" style="left:4.9%;top:71.7%;--d:2.2s"></span>
+        <span class="o-dot" style="left:4.9%;top:28.3%;--d:2.41s"></span>
+        <span class="o-dot" style="left:38.9%;top:1.3%;--d:2.62s"></span>
+        <span class="o-dot" style="left:81.2%;top:11%;--d:2.83s"></span>
+      </div></div>
+      <div class="sp-rw sp-rw3"><div class="o-ring o-r3">
+        <span class="o-dot" style="left:95%;top:71.7%;--d:1.64s"></span>
+        <span class="o-dot" style="left:61.2%;top:98.8%;--d:1.85s"></span>
+        <span class="o-dot" style="left:18.8%;top:89%;--d:2.06s"></span>
+        <span class="o-dot" style="left:0%;top:50%;--d:2.27s"></span>
+        <span class="o-dot g" style="left:18.8%;top:11%;--d:2.48s"></span>
+        <span class="o-dot" style="left:61.2%;top:1.2%;--d:2.69s"></span>
+        <span class="o-dot" style="left:95%;top:28.3%;--d:2.9s"></span>
+      </div></div>
+      <div class="sp-core"><div class="o-core"><div class="o-sun"><img src="assets/flask.webp" alt="" width="302" height="600"></div></div></div>
+    </div>
+    <img class="sp-brand" src="assets/logo-white.webp" alt="" width="1200" height="464">
+    <p class="sp-title" data-he="מסעות <em>מדע</em> חווייתיים לבית הספר היסודי" data-ar="رحلات <em>علوم</em> تجريبية للمدرسة الابتدائية">מסעות <em>מדע</em> חווייתיים לבית הספר היסודי</p>
+  </div>
+</div>
+
 <!-- ============================ 1 · HERO — expedition launch ============================ -->
 <section class="hero" id="h-hero">
   <div class="stars" aria-hidden="true">

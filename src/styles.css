@@ -95,7 +95,10 @@ nav.main a.active::after{content:"";position:absolute;bottom:2px;inset-inline:16
 
 /* ============================ starfield & space decor ============================ */
 .stars{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.55;
+/* left:0;top:0 is deliberate + physical: in RTL the <i>'s static position is
+   the RIGHT edge, which pushed every (positive-offset) box-shadow star past
+   the overflow clip — the whole starfield was invisible site-wide */
+.stars i{position:absolute;left:0;top:0;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.55;
   box-shadow:
     4vw 12vh 0 #fff, 12vw 68vh 0 #fff, 18vw 28vh 0 #fff, 26vw 84vh 0 #fff,
     33vw 16vh 0 #fff, 41vw 56vh 0 #fff, 49vw 8vh 0 #fff, 55vw 74vh 0 #fff,
@@ -1613,6 +1616,47 @@ html.anim .jr3c-points li:nth-child(3).is-in{animation-delay:.18s}
   .jr3c-body{block-size:186px}
 }
 
+
+/* =========================================================================
+   SPLASH INTRO (home) — pure-CSS timeline: stars → rings → sun → 20 dots →
+   wordmark + headline (3.3s) → header slides in (4s) → fade out (5.2s).
+   Gated on html.anim.sp-live: .sp-live is set pre-paint (layout.html head
+   script) only on the home page, first visit of the session. Without JS the
+   overlay still self-destructs (spOut → visibility:hidden). All selectors
+   are sp-* / .sp-live-scoped — no overlap with the compaction blocks below.
+   ========================================================================= */
+.splash{display:none}
+html.anim.sp-live .splash{display:flex;position:fixed;inset:0;z-index:120;
+  align-items:center;justify-content:center;cursor:pointer;
+  background:radial-gradient(circle at 50% 42%,#101B45 0%,var(--space) 62%);
+  animation:spOut .7s ease 5.2s forwards}
+@keyframes spOut{to{opacity:0;visibility:hidden}}
+html.anim.sp-live .splash .stars{animation:spFade .9s ease both}
+@keyframes spFade{from{opacity:0}}
+.sp-stack{display:flex;flex-direction:column;align-items:center;gap:24px;
+  padding:24px;text-align:center}
+.sp-orbit{position:relative;width:clamp(210px,52vmin,400px);aspect-ratio:1}
+.sp-rw{position:absolute;inset:0;animation:spIn .9s cubic-bezier(.2,.75,.3,1.12) .3s both}
+.sp-rw2{animation-delay:.55s}
+.sp-rw3{animation-delay:.8s}
+.sp-core{position:absolute;inset:0;animation:spIn .8s cubic-bezier(.2,.75,.3,1.18) 1s both}
+@keyframes spIn{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+html.anim.sp-live .splash .o-dot{animation:spDot .55s cubic-bezier(.2,.75,.3,1.4) var(--d,1.5s) both}
+@keyframes spDot{from{opacity:0;scale:.1}60%{opacity:1}to{opacity:1;scale:1}}
+.sp-brand{width:min(56vw,380px);height:auto;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,.5));
+  animation:spRise .7s cubic-bezier(.2,.75,.3,1.15) 3.3s both}
+.sp-title{margin:0;font-weight:900;font-size:clamp(22px,4.2vw,40px);color:#fff;
+  animation:spRise .7s cubic-bezier(.2,.75,.3,1.15) 3.55s both}
+.sp-title em{font-style:normal;color:var(--gold);position:relative;white-space:nowrap}
+.sp-title em::after{content:"";position:absolute;inset-inline:0;bottom:4px;height:26%;
+  background:rgba(245,194,27,.22);border-radius:6px;z-index:-1}
+@keyframes spRise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+/* the header joins the end card at 4s, sliding in ABOVE the overlay
+   (z 130 > splash 120, still below .skip at 200) */
+html.anim.sp-live header.site{animation:spHeader .65s cubic-bezier(.2,.75,.3,1.1) 4s both}
+@keyframes spHeader{from{transform:translateY(-130%);opacity:0;z-index:130}
+  30%{opacity:1}to{transform:translateY(0);opacity:1;z-index:130}}
 
 /* =========================================================================
    SHORT-SCREEN COMPACTION for merged page blocks — MUST stay at the end of

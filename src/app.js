@@ -50,7 +50,35 @@
     initMotion();
     initForms();
     initNav();
+    initSplash();
   });
+
+  /* ===== splash intro (home): CSS drives the timeline; JS marks it seen,
+     lets the user skip (click / Esc), and removes the node when done ===== */
+  function initSplash() {
+    var sp = document.getElementById("splash");
+    if (!sp) return;
+    var root = document.documentElement;
+    if (!root.classList.contains("anim") || !root.classList.contains("sp-live")) {
+      sp.parentNode && sp.parentNode.removeChild(sp);
+      return;
+    }
+    try { sessionStorage.setItem("dq_splash", "1"); } catch (e) {}
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      /* dropping .sp-live kills both the overlay and the header animation
+         rules — header lands in its normal resting state, no jump */
+      root.classList.remove("sp-live");
+      sp.parentNode && sp.parentNode.removeChild(sp);
+      document.removeEventListener("keydown", onKey);
+    }
+    function onKey(e) { if (e.key === "Escape") finish(); }
+    sp.addEventListener("click", finish);
+    document.addEventListener("keydown", onKey);
+    setTimeout(finish, 6100); /* just after the CSS fade-out completes */
+  }
 
   /* ===== header: solid white always; gains a shadow once scrolled ===== */
   function initNav() {

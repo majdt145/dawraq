@@ -24,6 +24,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script>(function(){try{if(window.matchMedia&&!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.className+=' anim';}}catch(e){}})();</script>
+<!-- splash intro gate: home page, first visit this session, decided BEFORE first paint (no flash) -->
+<script>(function(){try{var p=location.pathname;if((p==='/'||p.slice(-10)==='index.html')&&!sessionStorage.getItem('dq_splash')){document.documentElement.className+=' sp-live';}}catch(e){}})();</script>
 <!-- a11y prefs: apply saved accessibility classes BEFORE first paint (no flash) -->
 <script>(function(){try{var s=JSON.parse(localStorage.getItem('dq-a11y')||'{}'),h=document.documentElement,c=[];if(s.fs===1)c.push('aw-fs1');if(s.fs===2)c.push('aw-fs2');if(s.dark)c.push('aw-dark');if(s.gray)c.push('aw-gray');if(s.links)c.push('aw-links');if(s.spacing)c.push('aw-spacing');if(s.stopmotion){c.push('aw-stopmotion');h.className=h.className.replace(/(^|\s)anim(\s|$)/,' ');}if(c.length)h.className+=' '+c.join(' ');}catch(e){}})();</script>
 </head>
