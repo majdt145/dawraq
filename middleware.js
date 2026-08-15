@@ -1,7 +1,7 @@
 // Private-preview gate: the whole site requires a password until the client approves launch.
 // Password lives in the PREVIEW_PASS env var on Vercel (repo is public — never hardcode it here).
 // Remove this file to relaunch the site publicly.
-const USER = 'mostafa';
+const USER = 'majd';
 
 export default function middleware(request) {
   const path = new URL(request.url).pathname;
