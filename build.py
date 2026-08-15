@@ -93,7 +93,7 @@ def write_sitemap(pages):
 > animated character DAWRAK. Each journey ships as a classroom kit (experiment
 > materials, animation videos, workbooks, teacher guide) stored in a custom
 > classroom cabinet. Experiments written and validated by Dr. Shadi Farah,
-> senior scientist at the Technion. Approved program #43964 in the Israeli
+> senior scientist. Approved program #43964 in the Israeli
 > Ministry of Education GEFEN marketplace (fixed 4%% budget). Site is bilingual
 > Hebrew/Arabic on single URLs (client-side toggle). Registered TM 378828.
 
